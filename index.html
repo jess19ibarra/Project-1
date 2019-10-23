@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input type="text" id="search">
+
+    <ul id="search-results">
+        <!-- <li>
+            <h3>Title</h3>
+            <p>text</p>
+        </li> -->
+    </ul>
+
+    <div id="current-recipe">
+        <div id="recipe-details"></div>
+
+        <div id="instructions"></div>
+    </div>
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script>
+
+        var API_KEY = '4d398387f70a4f9998f7774f5ff18d19';
+
+
+        $("#search").on("change", function (e) {
+            e.preventDefault();
+            $("#recipe-details, #instructions, #search-results").empty();
+
+            var query = $(this).val();
+            var url = "https://api.spoonacular.com/recipes/search?query=" + query + "&apiKey=" + API_KEY;
+
+            $.ajax({
+                url,
+                method: "GET"
+            }).then(function (response) {
+                console.log(response);
+                // $("#search-results").empty();
+                response.results.forEach(function (result) {
+                    $("#search-results").append("<li class='main-result' data-recipe-id='" + result.id + "'>" +
+                        "<h3>" + result.title + "</h3>" +
+                        "<p>Ready in " + result.readyInMinutes + " minutes</p>" +
+                        "<p>" + result.servings + " servings</p>"
+                        + "<img style='max-width: 400px;' src='https://spoonacular.com/recipeImages/" + result.image + "'>" +
+                        "</li>");
+                });
+            });
+
+        });
+
+
+        $("#search-results").on("click", ".main-result", function () {
+
+            $("#recipe-details, #instructions, #search-results").empty();
+
+            var id = $(this).data("recipe-id");
+            var url = "https://api.spoonacular.com/recipes/" + id + "/information?apiKey=" + API_KEY;
+
+            $.ajax({
+                url,
+                method: "GET"
+            }).then(function (response) {
+
+                console.log(response);
+                $("#recipe-details").html("<h3>" + response.title + "</h3>" +
+                    "<p>Likes: " + response.aggregateLikes + "</p>" +
+                    "<p>Health Score: " + response.healthScore + "</p>" +
+                    "<p>Ready in " + response.readyInMinutes + " minutes</p>" +
+                    "<p>Price per serving: " + response.pricePerServing + "</p>" +
+                    "<p>Servings: " + response.servings + "</p>");
+            });
+
+            var instructionsUrl = "https://api.spoonacular.com/recipes/" + id + "/analyzedInstructions?apiKey=" + API_KEY;
+
+            $.ajax({
+                url: instructionsUrl,
+                method: "GET"
+            }).then(function (steps) {
+
+
+                console.log(steps);
+
+                steps[0].steps.forEach(function (step) {
+                    $("#instructions").append("<p><strong>" + step.number + "</strong>: " + step.step + " </p>");
+                });
+            });
+        });
+
+
+    </script>
+</body>
+
+</html>

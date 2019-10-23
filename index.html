@@ -29,14 +29,21 @@
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script>
 
+        //////////////////////////////////// Jarrells Code //////////////////////////////////
         var API_KEY = '4d398387f70a4f9998f7774f5ff18d19';
 
-
+        //Event Handler to run when user types in input
         $("#search").on("change", function (e) {
+            //Prevents default functionality to stop page reload
             e.preventDefault();
+
+            //Empties the html results
             $("#recipe-details, #instructions, #search-results").empty();
 
+            //Gets the value of what the user typed in search bar
             var query = $(this).val();
+
+            //The api call url
             var url = "https://api.spoonacular.com/recipes/search?query=" + query + "&apiKey=" + API_KEY;
 
             $.ajax({
@@ -45,6 +52,8 @@
             }).then(function (response) {
                 console.log(response);
                 // $("#search-results").empty();
+
+                //Loops through search results and adds the list of recipes that pops up
                 response.results.forEach(function (result) {
                     $("#search-results").append("<li class='main-result' data-recipe-id='" + result.id + "'>" +
                         "<h3>" + result.title + "</h3>" +
@@ -58,11 +67,16 @@
         });
 
 
+        //Event Handler for when user clicks result item
         $("#search-results").on("click", ".main-result", function () {
 
+            //Empties the html results
             $("#recipe-details, #instructions, #search-results").empty();
 
+            //Gets id of recipe
             var id = $(this).data("recipe-id");
+
+            //The api call url
             var url = "https://api.spoonacular.com/recipes/" + id + "/information?apiKey=" + API_KEY;
 
             $.ajax({
@@ -71,6 +85,7 @@
             }).then(function (response) {
 
                 console.log(response);
+                //Displays recipe details
                 $("#recipe-details").html("<h3>" + response.title + "</h3>" +
                     "<p>Likes: " + response.aggregateLikes + "</p>" +
                     "<p>Health Score: " + response.healthScore + "</p>" +
@@ -79,6 +94,7 @@
                     "<p>Servings: " + response.servings + "</p>");
             });
 
+            //api call for recipe instructions 
             var instructionsUrl = "https://api.spoonacular.com/recipes/" + id + "/analyzedInstructions?apiKey=" + API_KEY;
 
             $.ajax({
@@ -88,13 +104,13 @@
 
 
                 console.log(steps);
-
+                //loops the instructions array and adds it to the instructions html
                 steps[0].steps.forEach(function (step) {
                     $("#instructions").append("<p><strong>" + step.number + "</strong>: " + step.step + " </p>");
                 });
             });
         });
-        ////////////////////////////// END OF JARELLS CODE ///////////////////////////////////
+        ////////////////////////////// END OF JARRELLS CODE ///////////////////////////////////
 
         ////////////////////////////// START OF JESSICA I CODE ///////////////////////////////
 

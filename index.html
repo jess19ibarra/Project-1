@@ -25,10 +25,6 @@
         <div id="instructions"></div>
     </div>
 
-
-
-
-
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script>
@@ -98,9 +94,27 @@
                 });
             });
         });
+        ////////////////////////////// END OF JARELLS CODE ///////////////////////////////////
 
+        ////////////////////////////// START OF JESSICA I CODE ///////////////////////////////
+
+
+        $.ajax({
+            url: "https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=2&apiKey=" + API_KEY,
+            method: "GET"
+        }).then(function (ingredients) {
+            console.log(ingredients);
+        });
+
+        $.ajax({
+            url: "https://api.spoonacular.com/recipes/random?apiKey=" + API_KEY,
+            method: "GET"
+        }).then(function (popular) {
+            console.log(popular);
+        });
 
     </script>
+
 </body>
 
 </html>

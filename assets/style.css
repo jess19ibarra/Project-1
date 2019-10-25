@@ -62,3 +62,26 @@ button {
     margin-top: 70vh;
     margin-left: 75vh;
 }
+
+#general-search{
+    background-color: #EAB94E;
+    border-radius: 25px;
+    padding: 20px;
+    width: 250px;
+    height: 15px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    
+
+}
+
+#submit{
+    color: white;
+    float:right;
+    width: 40px;
+    height: 15px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

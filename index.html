@@ -8,33 +8,41 @@
     <title>Document</title>
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-     
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <!-- CSS STyle Sheet -->
-     <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/style.css">
 </head>
 
 <body>
 
-        <div class="header"></div>
+    <div class="header"></div>
 
-        <nav class="nav">
-            <a class="nav-link active" href="#">Home</a>
-            <a class="nav-link" href="#">Search Recipes</a>
-            <a class="nav-link" href="#">My Recipes</a>
-          </nav>
+    <nav class="nav">
+        <a class="nav-link active" href="#">Home</a>
+        <a class="nav-link" href="#">Search Recipes</a>
+        <a class="nav-link" href="#">My Recipes</a>
+    </nav>
 
-       <div class="userIcon"><img src="assets/images/user-circle-solid.svg" alt="user-icon"></div>
-
-          
-       <div class="hpLogo"><img src="assets/images/Nom Nom Logo.png" alt="home-logo"></div>
- 
-
-      <button type="button" class="btn btn-primary">Find Noms</button>
+    <div class="userIcon"><img src="assets/images/user-circle-solid.svg" alt="user-icon"></div>
 
 
+    <div class="hpLogo"><img src="assets/images/Nom Nom Logo.png" alt="home-logo"></div>
+
+
+    <button type="button" class="btn btn-primary">Find Noms</button>
+
+    <p>General Search</p>
     <input type="text" id="general-search">
 
+    <p>Find By Ingredients</p>
+    <input type="text" id="ingredients-search">
+
+    <p>Ingredients List - <span id="ingredientsClear">Clear</span></p>
+    <ul id="myIngredients"></ul>
+
+    <p>Search Results</p>
     <ul id="search-results">
         <!-- <li>
             <h3>Title</h3>
@@ -49,8 +57,8 @@
     </div>
 
     <footer>
-            <p>Brought to you by SMU Coding Bootcamp Group</p>
-        </footer>
+        <p>Brought to you by SMU Coding Bootcamp Group</p>
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -121,6 +129,72 @@
                     "<p>Servings: " + response.servings + "</p>");
             });
 
+            getInstructions(id);
+
+
+        });
+
+        //Find Recipe By Ingredients Code
+
+        var myIngredients = [];
+
+        $("#ingredients-search").on("change", function (e) {
+            e.preventDefault();
+
+            var ingredient = $(this).val();
+            myIngredients.push(ingredient);
+
+            $("#myIngredients").empty();
+            myIngredients.forEach(function (ingredient) {
+                $("#myIngredients").append("<li class='ingredient'>" + ingredient + "</li>");
+            })
+
+            $(this).val("");
+
+            var queryIngredients = myIngredients.join(",");
+            console.log(queryIngredients);
+
+            var ingredientsUrl = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + queryIngredients + "&number=10&apiKey=" + API_KEY;
+
+            $("#search-results").empty();
+
+            $.ajax({
+                url: ingredientsUrl,
+                method: "GET"
+            }).then(function (response) {
+                console.log(response);
+
+                response.forEach(function (result) {
+                    var missingString;
+
+                    if (result.missedIngredients.length > 0) {
+                        var missingIngredients = [];
+
+                        result.missedIngredients.forEach(function (missing) {
+                            missingIngredients.push(missing.name);
+                        });
+
+                        missingString = missingIngredients.join(",");
+                    } else {
+                        missingString = "None!";
+                    }
+
+
+
+                    $("#search-results").append("<li class='main-result' data-recipe-id='" + result.id + "'>" +
+                        "<h3>" + result.title + "</h3>" +
+                        "<p>Likes: " + result.likes + "</p>" +
+                        "<p>Missing Ingredients: " + missingString + "</p>"
+                        + "<img style='max-width: 400px;' src='" + result.image + "'>" +
+                        "</li>");
+                });
+            })
+
+
+        })
+
+
+        function getInstructions(id) {
             //api call for recipe instructions 
             var instructionsUrl = "https://api.spoonacular.com/recipes/" + id + "/analyzedInstructions?apiKey=" + API_KEY;
 
@@ -136,7 +210,11 @@
                     $("#instructions").append("<p><strong>" + step.number + "</strong>: " + step.step + " </p>");
                 });
             });
-        });
+        }
+
+        $("#ingredientsClear").on("click", function () {
+            $("#myIngredients").empty();
+        })
         ////////////////////////////// END OF JARRELLS CODE ///////////////////////////////////
 
         ////////////////////////////// START OF JESSICA I CODE ///////////////////////////////

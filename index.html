@@ -13,9 +13,6 @@
 
     <!-- CSS STyle Sheet -->
     <link rel="stylesheet" href="assets/style.css">
-
-
-
 </head>
 
 <body>
@@ -36,11 +33,16 @@
 
     <button type="button" class="btn btn-primary">Find Noms</button>
 
+    <p>General Search</p>
+    <input type="text" id="general-search">
 
-    <input type="text" id="general-search" name="" placeholder="Search">
+    <p>Find By Ingredients</p>
+    <input type="text" id="ingredients-search">
 
+    <p>Ingredients List - <span id="ingredientsClear">Clear</span></p>
+    <ul id="myIngredients"></ul>
 
-
+    <p>Search Results</p>
     <ul id="search-results">
         <!-- <li>
             <h3>Title</h3>
@@ -127,6 +129,72 @@
                     "<p>Servings: " + response.servings + "</p>");
             });
 
+            getInstructions(id);
+
+
+        });
+
+        //Find Recipe By Ingredients Code
+
+        var myIngredients = [];
+
+        $("#ingredients-search").on("change", function (e) {
+            e.preventDefault();
+
+            var ingredient = $(this).val();
+            myIngredients.push(ingredient);
+
+            $("#myIngredients").empty();
+            myIngredients.forEach(function (ingredient) {
+                $("#myIngredients").append("<li class='ingredient'>" + ingredient + "</li>");
+            })
+
+            $(this).val("");
+
+            var queryIngredients = myIngredients.join(",");
+            console.log(queryIngredients);
+
+            var ingredientsUrl = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + queryIngredients + "&number=10&apiKey=" + API_KEY;
+
+            $("#search-results").empty();
+
+            $.ajax({
+                url: ingredientsUrl,
+                method: "GET"
+            }).then(function (response) {
+                console.log(response);
+
+                response.forEach(function (result) {
+                    var missingString;
+
+                    if (result.missedIngredients.length > 0) {
+                        var missingIngredients = [];
+
+                        result.missedIngredients.forEach(function (missing) {
+                            missingIngredients.push(missing.name);
+                        });
+
+                        missingString = missingIngredients.join(",");
+                    } else {
+                        missingString = "None!";
+                    }
+
+
+
+                    $("#search-results").append("<li class='main-result' data-recipe-id='" + result.id + "'>" +
+                        "<h3>" + result.title + "</h3>" +
+                        "<p>Likes: " + result.likes + "</p>" +
+                        "<p>Missing Ingredients: " + missingString + "</p>"
+                        + "<img style='max-width: 400px;' src='" + result.image + "'>" +
+                        "</li>");
+                });
+            })
+
+
+        })
+
+
+        function getInstructions(id) {
             //api call for recipe instructions 
             var instructionsUrl = "https://api.spoonacular.com/recipes/" + id + "/analyzedInstructions?apiKey=" + API_KEY;
 
@@ -142,7 +210,11 @@
                     $("#instructions").append("<p><strong>" + step.number + "</strong>: " + step.step + " </p>");
                 });
             });
-        });
+        }
+
+        $("#ingredientsClear").on("click", function () {
+            $("#myIngredients").empty();
+        })
         ////////////////////////////// END OF JARRELLS CODE ///////////////////////////////////
 
         ////////////////////////////// START OF JESSICA I CODE ///////////////////////////////

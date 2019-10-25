@@ -6,11 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+     
+    <!-- CSS STyle Sheet -->
+     <link rel="stylesheet" href="assets/style.css">
 </head>
 
 <body>
 
-    <input type="text" id="search">
+        <div class="header"></div>
+
+        <nav class="nav">
+            <a class="nav-link active" href="#">Home</a>
+            <a class="nav-link" href="#">Search Recipes</a>
+            <a class="nav-link" href="#">My Recipes</a>
+          </nav>
+
+       <div class="userIcon"><img src="assets/images/user-circle-solid.svg" alt="user-icon"></div>
+
+          
+       <div class="hpLogo"><img src="assets/images/Nom Nom Logo.png" alt="home-logo"></div>
+ 
+
+      <button type="button" class="btn btn-primary">Find Noms</button>
+
+
+    <input type="text" id="general-search">
 
     <ul id="search-results">
         <!-- <li>
@@ -25,6 +48,10 @@
         <div id="instructions"></div>
     </div>
 
+    <footer>
+            <p>Brought to you by SMU Coding Bootcamp Group</p>
+        </footer>
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script>
@@ -33,7 +60,7 @@
         var API_KEY = '4d398387f70a4f9998f7774f5ff18d19';
 
         //Event Handler to run when user types in input
-        $("#search").on("change", function (e) {
+        $("#general-search").on("change", function (e) {
             //Prevents default functionality to stop page reload
             e.preventDefault();
 

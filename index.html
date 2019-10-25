@@ -53,7 +53,11 @@
     <div id="current-recipe">
         <div id="recipe-details"></div>
 
+        <h3>Instructions:</h3>
         <div id="instructions"></div>
+
+        <h3>Ingredients:</h3>
+        <div id="ingredients"></div>
     </div>
 
     <footer>
@@ -65,7 +69,7 @@
     <script>
 
         //////////////////////////////////// Jarrells Code //////////////////////////////////
-        var API_KEY = '4d398387f70a4f9998f7774f5ff18d19';
+        var API_KEY = '09f6d2653d8c4ecd9fcbf576a46890d0';
 
         //Event Handler to run when user types in input
         $("#general-search").on("change", function (e) {
@@ -73,7 +77,7 @@
             e.preventDefault();
 
             //Empties the html results
-            $("#recipe-details, #instructions, #search-results").empty();
+            $("#recipe-details, #search-results").empty();
 
             //Gets the value of what the user typed in search bar
             var query = $(this).val();
@@ -125,11 +129,12 @@
                     "<p>Likes: " + response.aggregateLikes + "</p>" +
                     "<p>Health Score: " + response.healthScore + "</p>" +
                     "<p>Ready in " + response.readyInMinutes + " minutes</p>" +
-                    "<p>Price per serving: " + response.pricePerServing + "</p>" +
+                    "<p>Price per serving: $" + response.pricePerServing + "</p>" +
                     "<p>Servings: " + response.servings + "</p>");
             });
 
             getInstructions(id);
+            getIngredients(id);
 
 
         });
@@ -139,6 +144,11 @@
         var myIngredients = [];
 
         $("#ingredients-search").on("change", function (e) {
+
+            //Empties the html results
+            $("#recipe-details, #search-results").empty();
+
+
             e.preventDefault();
 
             var ingredient = $(this).val();
@@ -193,8 +203,14 @@
 
         })
 
+        $("#ingredientsClear").on("click", function () {
+            $("#myIngredients").empty();
+        })
+
 
         function getInstructions(id) {
+            $("#instructions").empty();
+
             //api call for recipe instructions 
             var instructionsUrl = "https://api.spoonacular.com/recipes/" + id + "/analyzedInstructions?apiKey=" + API_KEY;
 
@@ -212,27 +228,48 @@
             });
         }
 
-        $("#ingredientsClear").on("click", function () {
-            $("#myIngredients").empty();
-        })
+        function getIngredients(id) {
+            $("#ingredients").empty();
+
+            //api call for recipe instructions 
+            var ingredientsUrl = "https://api.spoonacular.com/recipes/" + id + "/ingredientWidget.json?apiKey=" + API_KEY;
+
+
+            $.ajax({
+                url: ingredientsUrl,
+                method: "GET"
+            }).then(function (ingredients) {
+
+
+                console.log(ingredients);
+                //loops the instructions array and adds it to the instructions html
+                ingredients.ingredients.forEach(function (ingredient) {
+                    $("#ingredients").append("<p><strong>" + ingredient.name + "</strong>: " + ingredient.amount.us.value + " " + ingredient.amount.us.unit + " </p>");
+                });
+            });
+        }
+
+
+
+
         ////////////////////////////// END OF JARRELLS CODE ///////////////////////////////////
 
         ////////////////////////////// START OF JESSICA I CODE ///////////////////////////////
 
 
-        $.ajax({
-            url: "https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=2&apiKey=" + API_KEY,
-            method: "GET"
-        }).then(function (ingredients) {
-            console.log(ingredients);
-        });
+        // $.ajax({
+        //     url: "https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=2&apiKey=" + API_KEY,
+        //     method: "GET"
+        // }).then(function (ingredients) {
+        //     console.log(ingredients);
+        // });
 
-        $.ajax({
-            url: "https://api.spoonacular.com/recipes/random?apiKey=" + API_KEY,
-            method: "GET"
-        }).then(function (popular) {
-            console.log(popular);
-        });
+        // $.ajax({
+        //     url: "https://api.spoonacular.com/recipes/random?apiKey=" + API_KEY,
+        //     method: "GET"
+        // }).then(function (popular) {
+        //     console.log(popular);
+        // });
 
     </script>
 

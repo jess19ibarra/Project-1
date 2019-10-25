@@ -5,12 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Nom Nom</title>
 </head>
 
 <body>
 
     <input type="text" id="search">
+    <input type="text" id="ingredient-search">
+
+    <ul id="my-ingredients">
+
+    </ul>
 
     <ul id="search-results">
         <!-- <li>
@@ -32,6 +37,7 @@
         //////////////////////////////////// Jarrells Code //////////////////////////////////
         var API_KEY = '4d398387f70a4f9998f7774f5ff18d19';
 
+        //Recipe by General Search
         //Event Handler to run when user types in input
         $("#search").on("change", function (e) {
             //Prevents default functionality to stop page reload
@@ -110,6 +116,24 @@
                 });
             });
         });
+
+
+        //Recipe By Indredients Search
+        var myIngredients = [];
+
+        $("#ingredients-search").on("change", function () {
+
+            var ingredientsUrl = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=2&apiKey=" + API_KEY;
+
+            $.ajax({
+
+            })
+
+
+        })
+
+
+
         ////////////////////////////// END OF JARRELLS CODE ///////////////////////////////////
 
         ////////////////////////////// START OF JESSICA I CODE ///////////////////////////////

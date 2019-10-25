@@ -1,0 +1,64 @@
+
+
+body {
+    background-color: #fed060;
+    min-height: 100vh;
+    min-width: 100%;
+}
+
+
+.card-body {
+    background-color: #fed060;
+    min-height: 88vh;
+   padding-top: 500px;
+}
+
+.card-header {
+
+    background-color: #fed060;
+    padding: 0%;
+}
+
+.nav {
+    background-color:  #fed060;
+}
+
+.userIcon {
+    position:absolute;
+    width:30px;
+    height:30px;
+    top:0;
+    right:0;
+    left: 155vh; 
+    margin-top: 2vh;
+    
+}
+
+.nav-link {
+    color: black;
+}
+
+.hpLogo img {
+    max-width: 20%;
+    height:auto;
+    position: absolute; 
+    margin-top: 20vh;
+    margin-left: 65vh;
+
+}
+
+footer {
+    background-color:  rgb(86, 202, 86);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+    
+}
+
+button {
+    background-color: rgb(35, 185, 35);
+    border-color: rgb(35, 185, 35);
+    margin-top: 70vh;
+    margin-left: 75vh;
+}

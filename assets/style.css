@@ -79,8 +79,19 @@ footer p {
 
 }
 
-.btn-add {
-    /* display:inline-block; */
+.sidenav{
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111111;
+    overflow-x: hidden;
+    transition: 0.5s;
+     padding-top: 15px;
+     transform: translateX(-250px);
+    color: #fff;
 }
 
 
@@ -89,7 +100,19 @@ footer p {
     
 }
 
-.btn-dark {
-    padding: 5px 10px;
-    margin-top:-2px;
-}
+.sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }

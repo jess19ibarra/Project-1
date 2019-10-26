@@ -18,9 +18,10 @@
 <body>
 
     <div class="header"></div>
-
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
     <nav id="mysidenav" class="sidenav">
-        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
+
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a class="nav-link active" href="#">Home</a>
         <a class="nav-link" href="#">Search Recipes</a>
         <a class="nav-link" href="#">My Recipes</a>
@@ -293,7 +294,17 @@
         // });
 
 
+        ///function for menu/// Junko's code///
 
+        function openNav() {
+            $("#mysidenav").css({ "transform": "translateX(0)" });
+            console.log("working");
+        };
+
+        function closeNav() {
+            $("#mysidenav").css({ "transform": "translateX(-100%)" });
+            console.log("close working");
+        };
 
     </script>
 

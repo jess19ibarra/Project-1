@@ -362,7 +362,49 @@ $("#login").on("click", function (event) {
         console.log(errorMessage);
         // ...
     });
+
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            window.location.href = "index.html";
+        } else {
+            // No user is signed in.
+
+        }
+    });
 });
+
+firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+        $("#loginLink").hide();
+        $("#logoutLink").show();
+    } else {
+        // No user is signed in.
+        $("#loginLink").show();
+        $("#logoutLink").hide();
+    }
+});
+
+// var user = firebase.auth().currentUser;
+
+// if (user) {
+//     // User is signed in.
+//     $("#loginLink").hide();
+//     $("#logoutLink").show();
+// } else {
+//     // No user is signed in.
+//     $("#loginLink").show();
+//     $("#logoutLink").hide();
+// }
+
+$("#logoutLink").on("click", function (e) {
+    e.preventDefault();
+
+    firebase.auth().signOut().then(function () {
+        // Sign-out successful.
+        $("#loginLink").show();
+        $("#logoutLink").hide();
+    })
+})
 
 ///function for menu/// Junko's code///
 

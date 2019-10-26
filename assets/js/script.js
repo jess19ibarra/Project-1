@@ -2,8 +2,10 @@
 //////////////////////////////////// Jarrells Code //////////////////////////////////
 var API_KEY = '09f6d2653d8c4ecd9fcbf576a46890d0';
 
+currentRecipeList = [];
+
 //Event Handler to run when user types in input
-$("#general-search").on("change", function (e) {
+$(".btn-add").on("click", function (e) {
     //Prevents default functionality to stop page reload
     e.preventDefault();
 

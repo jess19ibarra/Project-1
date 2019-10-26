@@ -8,47 +8,53 @@ body {
 
 
 .card-body {
-    background-color: #fed060;
-    min-height: 88vh;
-   padding-top: 500px;
+    background-color: #ffffff;
+    min-height: 50vh;
+   margin-top: 100px;
 }
 
-.card-header {
+.cardOne {
+    margin-left:10%; 
 
-    background-color: #fed060;
-    padding: 0%;
 }
 
-.nav {
-    background-color:  #fed060;
+.cardTwo {
+    margin-right:10%;   
+
 }
 
-.userIcon {
-    position:absolute;
-    width:30px;
-    height:30px;
-    top:0;
-    right:0;
-    left: 155vh; 
-    margin-top: 2vh;
-    
+
+.btn-secondary {
+    margin-left: 45vh;
+    padding:2vh;   
 }
 
 .nav-link {
-    color: black;
+    color: rgb(0, 0, 0);
 }
 
-.hpLogo img {
-    max-width: 20%;
-    height:auto;
-    position: absolute; 
-    margin-top: 20vh;
-    margin-left: 65vh;
+
+.userIcon {
+    position:absolute;
+    width:60px;
+    height:60px;
+    top:0;
+    right:0;
+    left: 155vh; 
+    margin-top: 5vh;
+    
+}
+
+
+.hpLogo {
+    max-width: 10%; 
+    margin-top: 4vh;
+    margin-right: 110vh;
 
 }
 
 footer {
-    background-color:  rgb(86, 202, 86);
+    background-color:  rgb(255, 255, 255);
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -56,9 +62,55 @@ footer {
     
 }
 
-button {
-    background-color: rgb(35, 185, 35);
-    border-color: rgb(35, 185, 35);
+footer p {
+    text-align: center;
+}
+
+.button {
     margin-top: 70vh;
     margin-left: 75vh;
+    color: (86, 202, 86);
 }
+
+#general-search {
+    margin: 0 auto;
+    display: inline-block;
+    width: 30%;
+
+}
+
+.sidenav{
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111111;
+    overflow-x: hidden;
+    transition: 0.5s;
+     padding-top: 15px;
+     transform: translateX(-250px);
+    color: #fff;
+}
+
+.ingredientSearch {
+    text-align: center;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }

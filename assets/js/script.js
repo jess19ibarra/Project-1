@@ -13,7 +13,7 @@ $(".btn-add").on("click", function (e) {
     $("#recipe-details, #search-results").empty();
 
     //Gets the value of what the user typed in search bar
-    var query = $(this).val();
+    var query = $("#general-search").val();
 
     //The api call url
     var url = "https://api.spoonacular.com/recipes/search?query=" + query + "&apiKey=" + API_KEY;
@@ -259,19 +259,68 @@ function getIngredients(id) {
 ////////////////////////////// START OF JESSICA I CODE ///////////////////////////////
 
 
-// $.ajax({
-//     url: "https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=2&apiKey=" + API_KEY,
-//     method: "GET"
-// }).then(function (ingredients) {
-//     console.log(ingredients);
-// });
+// Initialize Firebase and change the values of the config values with your own Firebase config values.
+var config = {
+    apiKey: "AIzaSyBIEGhb7gkafYQGszll5RweQDi31EwC_hE",
+    authDomain: "nom-nom-a0f5a.firebaseapp.com",
+    databaseURL: "https://nom-nom-a0f5a.firebaseio.com",
+    projectId: "nom-nom-a0f5a",
+    storageBucket: "nom-nom-a0f5a.appspot.com",
+    messagingSenderId: "131703612828",
+    appId: "1:131703612828:web:2dbde26d43cea1efb49459",
+    measurementId: "G-P7L4FXRT60"
+};
 
-// $.ajax({
-//     url: "https://api.spoonacular.com/recipes/random?apiKey=" + API_KEY,
-//     method: "GET"
-// }).then(function (popular) {
-//     console.log(popular);
-// });
+firebase.initializeApp(config);
+
+// Create a variable to reference the database
+var database = firebase.database();
+
+// Initial Variables (SET the first set IN FIREBASE FIRST)
+// Note remember to create these same variables in Firebase!
+var email = "";
+var psw = "";
+var pswrepeat = "";
+
+// Click Button changes what is stored in firebase
+$(".signupbtn").on("click", function (event) {
+    // Prevent the page from refreshing
+    event.preventDefault();
+
+    // Get inputs
+    email = $("#email-input").val().trim();
+    psw = $("#psw-input").val().trim();
+    pswrepeat = $("#pswrepeat-input").val().trim();
+
+    // Change what is saved in firebase
+    database.ref().set({
+        email: email,
+        psw: psw,
+        pswrepeat: pswrepeat
+    });
+});
+
+// Firebase is always watching for changes to the data.
+// When changes occurs it will print them to console and html
+database.ref().on("value", function (snapshot) {
+
+    // Print the initial data to the console.
+    console.log(snapshot.val());
+
+    // Log the value of the various properties
+    console.log(snapshot.val().email);
+    console.log(snapshot.val().psw);
+    console.log(snapshot.val().pswrepeat);
+
+    // Change the HTML
+    $("#displayed-data").text(snapshot.val().email + " | " + snapshot.val().psw + " | " + snapshot.val().pswrepeat);
+
+    // If any errors are experienced, log them to console.
+}, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+});
+
+
 
 ///function for menu/// Junko's code///
 

@@ -4,6 +4,8 @@ var API_KEY = '09f6d2653d8c4ecd9fcbf576a46890d0';
 
 currentRecipeList = [];
 
+//General Search Code 
+var ingredients = [];
 //Event Handler to run when user types in input
 $(".btn-add").on("click", function (e) {
     //Prevents default functionality to stop page reload
@@ -14,7 +16,6 @@ $(".btn-add").on("click", function (e) {
 
     //Gets the value of what the user typed in search bar
     var query = $("#general-search").val();
-
     //The api call url
     var url = "https://api.spoonacular.com/recipes/search?query=" + query + "&apiKey=" + API_KEY;
 
@@ -39,47 +40,12 @@ $(".btn-add").on("click", function (e) {
 });
 
 
-//Event Handler for when user clicks result item
-$("#search-results").on("click", ".main-result", function () {
-
-    //Empties the html results
-    $("#recipe-details, #instructions, #search-results").empty();
-
-    //Gets id of recipe
-    var id = $(this).data("recipe-id");
-
-    //The api call url
-    var url = "https://api.spoonacular.com/recipes/" + id + "/information?apiKey=" + API_KEY;
-
-    $.ajax({
-        url,
-        method: "GET"
-    }).then(function (response) {
-
-        console.log(response);
-        //Displays recipe details
-        $("#recipe-details").html("<h3>" + response.title + "</h3>" +
-            "<p>Likes: " + response.aggregateLikes + "</p>" +
-            "<p>Health Score: " + response.healthScore + "</p>" +
-            "<p>Ready in " + response.readyInMinutes + " minutes</p>" +
-            "<p>Price per serving: $" + response.pricePerServing + "</p>" +
-            "<p>Servings: " + response.servings + "</p>");
-    });
-
-    //Gets Instructions
-    getInstructions(id);
-    //Gets Ingredients
-    getIngredients(id);
-
-
-});
-
-//Find Recipe By Ingredients Code
+//Recipe Search Code
 
 var myIngredients = [];
 
 $("#ingredients-search").on("change", function (e) {
-
+    console.log(this)
     //Empties the html results
     $("#recipe-details, #search-results").empty();
 
@@ -88,9 +54,9 @@ $("#ingredients-search").on("change", function (e) {
     var ingredient = $(this).val();
     myIngredients.push(ingredient);
 
-    $("#myIngredients").empty();
+    $("#ingredientsList").empty();
     myIngredients.forEach(function (ingredient) {
-        $("#myIngredients").append("<li class='ingredient'>" + ingredient + "</li>");
+        $("#ingredientsList").append("<li class='ingredient'>" + ingredient + "</li>");
     })
 
     $(this).val("");
@@ -135,7 +101,7 @@ $("#ingredients-search").on("change", function (e) {
 
 
 
-//Browse Recipes
+//Browse Recipes Code
 
 
 $("#browseButton").on("click", function () {
@@ -202,6 +168,43 @@ function getIngredients(id) {
         });
     });
 }
+
+//Populate search results in list form code
+
+//Event Handler for when user clicks result item
+$("#search-results").on("click", ".main-result", function () {
+
+    //Empties the html results
+    $("#recipe-details, #instructions, #search-results").empty();
+
+    //Gets id of recipe
+    var id = $(this).data("recipe-id");
+
+    //The api call url
+    var url = "https://api.spoonacular.com/recipes/" + id + "/information?apiKey=" + API_KEY;
+
+    $.ajax({
+        url,
+        method: "GET"
+    }).then(function (response) {
+
+        console.log(response);
+        //Displays recipe details
+        $("#recipe-details").html("<h3>" + response.title + "</h3>" +
+            "<p>Likes: " + response.aggregateLikes + "</p>" +
+            "<p>Health Score: " + response.healthScore + "</p>" +
+            "<p>Ready in " + response.readyInMinutes + " minutes</p>" +
+            "<p>Price per serving: $" + response.pricePerServing + "</p>" +
+            "<p>Servings: " + response.servings + "</p>");
+    });
+
+    //Gets Instructions
+    getInstructions(id);
+    //Gets Ingredients
+    getIngredients(id);
+
+
+});
 
 ////////////////////////////// END OF JARRELLS CODE ///////////////////////////////////
 

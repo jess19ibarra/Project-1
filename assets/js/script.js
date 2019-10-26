@@ -150,7 +150,6 @@ function createMarker(place) {
 }
 
 // $("#googleBtn").on("click", initMap);
-initMap();
 
 
 
@@ -268,14 +267,14 @@ $("#search-results").on("click", ".main-result", function () {
 
 // Initialize Firebase and change the values of the config values with your own Firebase config values.
 var config = {
-    apiKey: "AIzaSyBIEGhb7gkafYQGszll5RweQDi31EwC_hE",
-    authDomain: "nom-nom-a0f5a.firebaseapp.com",
-    databaseURL: "https://nom-nom-a0f5a.firebaseio.com",
-    projectId: "nom-nom-a0f5a",
-    storageBucket: "nom-nom-a0f5a.appspot.com",
-    messagingSenderId: "131703612828",
-    appId: "1:131703612828:web:2dbde26d43cea1efb49459",
-    measurementId: "G-P7L4FXRT60"
+    apiKey: "AIzaSyCIHEL78Eki3saKNSEVF0UbxQm9_uVRSLk",
+    authDomain: "nomnom-43b5b.firebaseapp.com",
+    databaseURL: "https://nomnom-43b5b.firebaseio.com",
+    projectId: "nomnom-43b5b",
+    storageBucket: "nomnom-43b5b.appspot.com",
+    messagingSenderId: "471286336226",
+    appId: "1:471286336226:web:622e73cbcf9ee3b0c82cbb",
+    measurementId: "G-KNKHCM19XZ"
 };
 
 firebase.initializeApp(config);
@@ -327,13 +326,35 @@ var database = firebase.database();
 //     console.log("The read failed: " + errorObject.code);
 // });
 
-$(".signupbtn").on("click", function (event) {
+$("#signupbtn").on("click", function (event) {
     event.preventDefault();
+
+    var email = $("#email").val();
+    var password = $("#psw").val();
+
+    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // ...
+    });
 })
 
-$(".login").on("click", function (event) {
+$("#login").on("click", function (event) {
     // Prevent the page from refreshing
     event.preventDefault();
+
+    console.log("yes");
+
+    var email = $("#email").val();
+    var password = $("#psw").val();
+
+    // firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+    //     // Handle Errors here.
+    //     var errorCode = error.code;
+    //     var errorMessage = error.message;
+    //     // ...
+    // });
 });
 
 ///function for menu/// Junko's code///

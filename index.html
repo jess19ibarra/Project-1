@@ -16,24 +16,55 @@
 
 <body>
 
-        <div class="header"></div>
+        <div class="userIcon"><img src="assets/images/user-circle-solid.svg" alt="user-icon"></div> 
 
-        <nav class="nav">
-            <a class="nav-link active" href="#">Home</a>
-            <a class="nav-link" href="#">Search Recipes</a>
-            <a class="nav-link" href="#">My Recipes</a>
-          </nav>
+        <!--static nav bar-->
 
-       <div class="userIcon"><img src="assets/images/user-circle-solid.svg" alt="user-icon"></div>
+        <div class="container">
+                <header>
+                  <a href="#"><img class="hpLogo" src="assets/images/nom_nom_logo.png" alt="nomNomLogo" width="87" height="76" id="Insert_logo"/></a>
+                </header>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-secondary active">
+                      <input type="radio" name="options" id="option1" autocomplete="off" checked> Ingredients Search
+                    </label>
+                    <label class="btn btn-secondary">
+                      <input type="radio" name="options" id="option2" autocomplete="off"> Browse Recipes
+                    </label>
+                    <label class="btn btn-secondary">
+                      <input type="radio" name="options" id="option3" autocomplete="off"> Trending Recipes
+                    </label>
+                    
+                  </div>
+            </div>
+        </div>
+        <br>
+        <div class="container ingredientSearch">
+            <input type="text" class="form-control" id="general-search">
+            <button type="button" class="btn btn-dark btn-add">Add</button>
+        </div>
 
-          
-       <div class="hpLogo"><img src="assets/images/Nom Nom Logo.png" alt="home-logo"></div>
- 
+        <br>
 
-      <button type="button" class="btn btn-primary">Find Noms</button>
+        <div class="row">
+                <div class="col-sm-6">
+                  <div class="card cardOne">
+                    <div class="card-body">
+                      <ul class="card-text" id=""></ul>
+                      <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="card cardTwo">
+                    <div class="card-body">
+                            <ul class="card-text" id="search-results"></ul>
+                      <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-
-    <input type="text" id="general-search">
 
     <ul id="search-results">
         <!-- <li>
@@ -48,6 +79,10 @@
         <div id="instructions"></div>
     </div>
 
+
+    
+
+
     <footer>
             <p>Brought to you by SMU Coding Bootcamp Group</p>
         </footer>
@@ -60,7 +95,7 @@
         var API_KEY = '4d398387f70a4f9998f7774f5ff18d19';
 
         //Event Handler to run when user types in input
-        $("#general-search").on("change", function (e) {
+        $(".btn-add").on("click", function (e) {
             //Prevents default functionality to stop page reload
             e.preventDefault();
 
@@ -68,7 +103,7 @@
             $("#recipe-details, #instructions, #search-results").empty();
 
             //Gets the value of what the user typed in search bar
-            var query = $(this).val();
+            var query = $("#general-search").val();
 
             //The api call url
             var url = "https://api.spoonacular.com/recipes/search?query=" + query + "&apiKey=" + API_KEY;

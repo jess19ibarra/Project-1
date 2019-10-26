@@ -28,9 +28,7 @@
 
     <div class="userIcon"><img src="assets/images/user-circle-solid.svg" alt="user-icon"></div>
 
-
     <div class="hpLogo"><img src="assets/images/Nom Nom Logo.png" alt="home-logo"></div>
-
 
     <button type="button" class="btn btn-primary">Find Noms</button>
 
@@ -39,6 +37,9 @@
 
     <p>Find By Ingredients</p>
     <input type="text" id="ingredients-search">
+
+    <p>Browse Recipes</p>
+    <button id="browseButton">Browse</button>
 
     <p>Ingredients List - <span id="ingredientsClear">Clear</span></p>
     <ul id="myIngredients"></ul>
@@ -134,7 +135,9 @@
                     "<p>Servings: " + response.servings + "</p>");
             });
 
+            //Gets Instructions
             getInstructions(id);
+            //Gets Ingredients
             getIngredients(id);
 
 
@@ -148,7 +151,6 @@
 
             //Empties the html results
             $("#recipe-details, #search-results").empty();
-
 
             e.preventDefault();
 
@@ -190,8 +192,6 @@
                         missingString = "None!";
                     }
 
-
-
                     $("#search-results").append("<li class='main-result' data-recipe-id='" + result.id + "'>" +
                         "<h3>" + result.title + "</h3>" +
                         "<p>Likes: " + result.likes + "</p>" +
@@ -200,9 +200,36 @@
                         "</li>");
                 });
             })
+        });
 
 
+
+        //Browse Recipes
+
+
+        $("#browseButton").on("click", function () {
+            var url = "https://api.spoonacular.com/recipes/random?number=10&apiKey=" + API_KEY;
+
+            $.ajax({
+                url,
+                method: "GET"
+            }).then(function (response) {
+                console.log(response);
+                // $("#search-results").empty();
+
+                //Loops through search results and adds the list of recipes that pops up
+                response.recipes.forEach(function (result) {
+                    $("#search-results").append("<li class='main-result' data-recipe-id='" + result.id + "'>" +
+                        "<h3>" + result.title + "</h3>" +
+                        "<p>Ready in " + result.readyInMinutes + " minutes</p>" +
+                        "<p>" + result.servings + " servings</p>"
+                        + "<img style='max-width: 400px;' src='" + result.image + "'>" +
+                        "</li>");
+                });
+            });
         })
+
+
 
         $("#ingredientsClear").on("click", function () {
             $("#myIngredients").empty();
@@ -219,9 +246,7 @@
                 url: instructionsUrl,
                 method: "GET"
             }).then(function (steps) {
-
-
-                console.log(steps);
+                // console.log(steps);
                 //loops the instructions array and adds it to the instructions html
                 steps[0].steps.forEach(function (step) {
                     $("#instructions").append("<p><strong>" + step.number + "</strong>: " + step.step + " </p>");
@@ -232,26 +257,20 @@
         function getIngredients(id) {
             $("#ingredients").empty();
 
-            //api call for recipe instructions 
+            //api call for recipe ingredients 
             var ingredientsUrl = "https://api.spoonacular.com/recipes/" + id + "/ingredientWidget.json?apiKey=" + API_KEY;
-
 
             $.ajax({
                 url: ingredientsUrl,
                 method: "GET"
             }).then(function (ingredients) {
-
-
-                console.log(ingredients);
-                //loops the instructions array and adds it to the instructions html
+                // console.log(ingredients);
+                //loops the ingrediets array and adds it to the ingredients html
                 ingredients.ingredients.forEach(function (ingredient) {
                     $("#ingredients").append("<p><strong>" + ingredient.name + "</strong>: " + ingredient.amount.us.value + " " + ingredient.amount.us.unit + " </p>");
                 });
             });
         }
-
-
-
 
         ////////////////////////////// END OF JARRELLS CODE ///////////////////////////////////
 

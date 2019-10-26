@@ -110,6 +110,7 @@ $("#ingredients-search").on("change", function (e) {
 
         response.forEach(function (result) {
             var missingString;
+            var googleBtn;
 
             if (result.missedIngredients.length > 0) {
                 var missingIngredients = [];
@@ -119,19 +120,69 @@ $("#ingredients-search").on("change", function (e) {
                 });
 
                 missingString = missingIngredients.join(",");
+
+                ///for the google places modal///　ジェイラ
+
+                googleBtn = "<button type='button' class='btn btn-dark'data-toggle='modal' data-target='#googleModel' id='googleBtn'>View Nearby Stores</button>";
             } else {
                 missingString = "None!";
+                googleBtn = "";
             }
 
             $("#search-results").append("<li class='main-result' data-recipe-id='" + result.id + "'>" +
                 "<h3>" + result.title + "</h3>" +
                 "<p>Likes: " + result.likes + "</p>" +
-                "<p>Missing Ingredients: " + missingString + "</p>"
-                + "<img style='max-width: 400px;' src='" + result.image + "'>" +
+                "<p>Missing Ingredients: " + missingString + "</p>" +
+                googleBtn +
+                "<img style='max-width: 400px;' src='" + result.image + "'>" +
                 "</li>");
         });
     })
 });
+
+var map;
+var service;
+var infowindow;
+
+function initMap() {
+    var sydney = new google.maps.LatLng(-33.867, 151.195);
+
+    infowindow = new google.maps.InfoWindow();
+
+    map = new google.maps.Map(
+        document.getElementById('map'), { center: sydney, zoom: 15 });
+
+    var request = {
+        query: 'Museum of Contemporary Art Australia',
+        fields: ['name', 'geometry'],
+    };
+
+    var service = new google.maps.places.PlacesService(map);
+
+    service.findPlaceFromQuery(request, function (results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+            for (var i = 0; i < results.length; i++) {
+                createMarker(results[i]);
+            }
+            map.setCenter(results[0].geometry.location);
+        }
+    });
+}
+
+function createMarker(place) {
+    var marker = new google.maps.Marker({
+        map: map,
+        position: place.geometry.location
+    });
+
+    google.maps.event.addListener(marker, 'click', function () {
+        infowindow.setContent(place.name);
+        infowindow.open(map, this);
+    });
+}
+
+// $("#googleBtn").on("click", initMap);
+initMap();
 
 
 

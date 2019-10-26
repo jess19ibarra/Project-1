@@ -91,7 +91,7 @@ footer p {
     transition: 0.5s;
      padding-top: 15px;
      transform: translateX(-250px);
-    color: #fff;
+
 }
 
 .ingredientSearch {
@@ -99,7 +99,7 @@ footer p {
 }
 
 .sidenav a:hover {
-    color: #f1f1f1;
+    color:#fed060;
   }
   
 .sidenav .closebtn {

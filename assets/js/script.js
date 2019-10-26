@@ -34,6 +34,8 @@ $(".btn-add").on("click", function (e) {
                 + "<img style='max-width: 400px;' src='https://spoonacular.com/recipeImages/" + result.image + "'>" +
                 "</li>");
         });
+
+        currentRecipeList = Array.from(response.results);
     });
 
 });
@@ -65,6 +67,8 @@ $("#search-results").on("click", ".main-result", function () {
             "<p>Price per serving: $" + response.pricePerServing + "</p>" +
             "<p>Servings: " + response.servings + "</p>");
     });
+
+
 
     //Gets Instructions
     getInstructions(id);
@@ -157,6 +161,8 @@ $("#browseButton").on("click", function () {
                 + "<img style='max-width: 400px;' src='" + result.image + "'>" +
                 "</li>");
         });
+
+        currentRecipeList = Array.from(response.recipes);
     });
 })
 
@@ -203,6 +209,7 @@ function getIngredients(id) {
     });
 }
 
+
 ////////////////////////////// END OF JARRELLS CODE ///////////////////////////////////
 
 ////////////////////////////// START OF JESSICA I CODE ///////////////////////////////
@@ -233,3 +240,4 @@ function closeNav() {
     $("#mysidenav").css({ "transform": "translateX(-100%)" });
     console.log("close working");
 };
+

@@ -89,7 +89,7 @@ footer p {
     transition: 0.5s;
      padding-top: 15px;
      transform: translateX(-250px);
-    color: #fff;
+
 }
 
 
@@ -99,7 +99,7 @@ footer p {
 }
 
 .sidenav a:hover {
-    color: #f1f1f1;
+    color:#fed060;
   }
   
 .sidenav .closebtn {
@@ -113,4 +113,9 @@ footer p {
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
+  }
+
+
+  .main-result h3{
+    font-size: 18px;
   }

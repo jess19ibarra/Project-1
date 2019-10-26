@@ -17,19 +17,19 @@
 </head>
 
 <body>
-    <form action="action_page.php" method="post">
+    <form method="post">
         <div class="imgcontainer">
-            <img src="assets/images/Nom Nom Logo.png" alt="Avatar" class="avatar">
+            <a href="index.html"> <img src="assets/images/nom_nom_logo.png" alt="Avatar" class="avatar"></a>
         </div>
 
         <div class="container">
-            <label for="uname"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="uname" required>
+            <label for="Email"><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" name="Email" required>
 
             <label for="psw"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="psw" required>
 
-            <button type="submit">Log in</button>
+            <button id="login" type="submit">Log in</button>
             <label>
                 <input type="checkbox" checked="checked" name="remember"> Remember me
             </label>
@@ -39,6 +39,17 @@
             <a href="index.html" class="cancelbtn">Cancel</a>
         </div>
     </form>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <!-- Firebase Core JavaScript Link -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+    <!-- Specific Firebase products we want (Database) -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+
+    <script src="assets/js/script.js"></script>
 </body>
 
 </html>

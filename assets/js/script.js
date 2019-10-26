@@ -329,7 +329,7 @@ var database = firebase.database();
 //     console.log("The read failed: " + errorObject.code);
 // });
 
-$("#signupbtn").on("click", function (event) {
+$(".signupbtn").on("click", function (event) {
     event.preventDefault();
 
     var email = $("#email").val();
@@ -339,6 +339,8 @@ $("#signupbtn").on("click", function (event) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
+        console.log(errorCode);
+        console.log(errorMessage);
         // ...
     });
 })
@@ -352,12 +354,14 @@ $("#login").on("click", function (event) {
     var email = $("#email").val();
     var password = $("#psw").val();
 
-    // firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
-    //     // Handle Errors here.
-    //     var errorCode = error.code;
-    //     var errorMessage = error.message;
-    //     // ...
-    // });
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode);
+        console.log(errorMessage);
+        // ...
+    });
 });
 
 ///function for menu/// Junko's code///

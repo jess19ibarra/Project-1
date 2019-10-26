@@ -28,8 +28,14 @@
 
     </nav>
 
-    <a href="login.html">
-        <div class="userIcon"><img src="assets/images/user-circle-solid.svg" alt="user-icon"></div>
+
+
+    <a href="login.html" id="loginLink">
+        <div class="userIcon"><img src="assets/images/user-circle-solid.svg" alt="user-icon"> Login</div>
+    </a>
+
+    <a href="login.html" id="logoutLink">
+        <div class="userIcon"><img src="assets/images/user-circle-solid.svg" alt="user-icon"> Logout</div>
     </a>
 
     <div class="fade-out">
@@ -85,17 +91,6 @@
     <!-- <div class="layout-1">
 
     </div> -->
-
-
-    <script>
-
-        $(".option-btn").on("click", function (e) {
-            e.preventDefault()
-
-        })
-
-
-    </script>
 
     <br>
 
@@ -176,7 +171,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" id="map">
+                <div class="modal-body" style="position: relative;overflow: hidden;height: 250px;" id="map">
                     ...
                 </div>
                 <div class="modal-footer">
@@ -200,6 +195,12 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
+    <!-- Firebase Core JavaScript Link -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+    <!-- Specific Firebase products we want (Database) -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-auth.js"></script>
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBr9Pvzu3IdPGeBUSBN126B2v8fTGfBbww&libraries=places"></script>
     <script src="assets/js/script.js"></script>

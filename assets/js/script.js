@@ -108,30 +108,33 @@ $("#ingredients-search").on("change", function (e) {
     })
 });
 
+///google places api is the worst/// グーグルプレイズは最悪だ。
+
 var map;
 var service;
 var infowindow;
 
 function initMap() {
-    var sydney = new google.maps.LatLng(-33.867, 151.195);
+    var dallas = new google.maps.LatLng(-33.867, 151.195);
 
     infowindow = new google.maps.InfoWindow();
 
     map = new google.maps.Map(
-        document.getElementById('map'), { center: sydney, zoom: 15 });
+        document.getElementById('map'), { center: dallas, zoom: 15 });
 
     var request = {
-        query: 'Museum of Contemporary Art Australia',
+        query: 'grocery store',
         fields: ['name', 'geometry'],
     };
 
-    var service = new google.maps.places.PlacesService(map);
+    service = new google.maps.places.PlacesService(map);
 
     service.findPlaceFromQuery(request, function (results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
             for (var i = 0; i < results.length; i++) {
                 createMarker(results[i]);
             }
+
             map.setCenter(results[0].geometry.location);
         }
     });
@@ -150,7 +153,6 @@ function createMarker(place) {
 }
 
 // $("#googleBtn").on("click", initMap);
-initMap();
 
 
 
@@ -268,14 +270,14 @@ $("#search-results").on("click", ".main-result", function () {
 
 // Initialize Firebase and change the values of the config values with your own Firebase config values.
 var config = {
-    apiKey: "AIzaSyBIEGhb7gkafYQGszll5RweQDi31EwC_hE",
-    authDomain: "nom-nom-a0f5a.firebaseapp.com",
-    databaseURL: "https://nom-nom-a0f5a.firebaseio.com",
-    projectId: "nom-nom-a0f5a",
-    storageBucket: "nom-nom-a0f5a.appspot.com",
-    messagingSenderId: "131703612828",
-    appId: "1:131703612828:web:2dbde26d43cea1efb49459",
-    measurementId: "G-P7L4FXRT60"
+    apiKey: "AIzaSyCIHEL78Eki3saKNSEVF0UbxQm9_uVRSLk",
+    authDomain: "nomnom-43b5b.firebaseapp.com",
+    databaseURL: "https://nomnom-43b5b.firebaseio.com",
+    projectId: "nomnom-43b5b",
+    storageBucket: "nomnom-43b5b.appspot.com",
+    messagingSenderId: "471286336226",
+    appId: "1:471286336226:web:622e73cbcf9ee3b0c82cbb",
+    measurementId: "G-KNKHCM19XZ"
 };
 
 firebase.initializeApp(config);
@@ -329,12 +331,80 @@ var database = firebase.database();
 
 $(".signupbtn").on("click", function (event) {
     event.preventDefault();
+
+    var email = $("#email").val();
+    var password = $("#psw").val();
+
+    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode);
+        console.log(errorMessage);
+        // ...
+    });
 })
 
-$(".login").on("click", function (event) {
+$("#login").on("click", function (event) {
     // Prevent the page from refreshing
     event.preventDefault();
+
+    console.log("yes");
+
+    var email = $("#email").val();
+    var password = $("#psw").val();
+
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode);
+        console.log(errorMessage);
+        // ...
+    });
+
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            window.location.href = "index.html";
+        } else {
+            // No user is signed in.
+
+        }
+    });
 });
+
+firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+        $("#loginLink").hide();
+        $("#logoutLink").show();
+    } else {
+        // No user is signed in.
+        $("#loginLink").show();
+        $("#logoutLink").hide();
+    }
+});
+
+// var user = firebase.auth().currentUser;
+
+// if (user) {
+//     // User is signed in.
+//     $("#loginLink").hide();
+//     $("#logoutLink").show();
+// } else {
+//     // No user is signed in.
+//     $("#loginLink").show();
+//     $("#logoutLink").hide();
+// }
+
+$("#logoutLink").on("click", function (e) {
+    e.preventDefault();
+
+    firebase.auth().signOut().then(function () {
+        // Sign-out successful.
+        $("#loginLink").show();
+        $("#logoutLink").hide();
+    })
+})
 
 ///function for menu/// Junko's code///
 

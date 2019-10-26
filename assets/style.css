@@ -6,11 +6,25 @@ body {
     min-width: 100%;
 }
 
-
 .card-body {
     background-color: #ffffff;
     min-height: 50vh;
    margin-top: 100px;
+}
+
+.fade-out {
+    text-align: center;
+animation: fadeOut 6s;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
 }
 
 .cardOne {

@@ -114,6 +114,7 @@ $("#ingredients-search").on("change", function (e) {
 
         response.forEach(function (result) {
             var missingString;
+            var googleBtn;
 
             if (result.missedIngredients.length > 0) {
                 var missingIngredients = [];
@@ -123,19 +124,69 @@ $("#ingredients-search").on("change", function (e) {
                 });
 
                 missingString = missingIngredients.join(",");
+
+                ///for the google places modal///　ジェイラ
+
+                googleBtn = "<button type='button' class='btn btn-dark'data-toggle='modal' data-target='#googleModel' id='googleBtn'>View Nearby Stores</button>";
             } else {
                 missingString = "None!";
+                googleBtn = "";
             }
 
             $("#search-results").append("<li class='main-result' data-recipe-id='" + result.id + "'>" +
                 "<h3>" + result.title + "</h3>" +
                 "<p>Likes: " + result.likes + "</p>" +
-                "<p>Missing Ingredients: " + missingString + "</p>"
-                + "<img style='max-width: 400px;' src='" + result.image + "'>" +
+                "<p>Missing Ingredients: " + missingString + "</p>" +
+                googleBtn +
+                "<img style='max-width: 400px;' src='" + result.image + "'>" +
                 "</li>");
         });
     })
 });
+
+var map;
+var service;
+var infowindow;
+
+function initMap() {
+    var sydney = new google.maps.LatLng(-33.867, 151.195);
+
+    infowindow = new google.maps.InfoWindow();
+
+    map = new google.maps.Map(
+        document.getElementById('map'), { center: sydney, zoom: 15 });
+
+    var request = {
+        query: 'Museum of Contemporary Art Australia',
+        fields: ['name', 'geometry'],
+    };
+
+    var service = new google.maps.places.PlacesService(map);
+
+    service.findPlaceFromQuery(request, function (results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+            for (var i = 0; i < results.length; i++) {
+                createMarker(results[i]);
+            }
+            map.setCenter(results[0].geometry.location);
+        }
+    });
+}
+
+function createMarker(place) {
+    var marker = new google.maps.Marker({
+        map: map,
+        position: place.geometry.location
+    });
+
+    google.maps.event.addListener(marker, 'click', function () {
+        infowindow.setContent(place.name);
+        infowindow.open(map, this);
+    });
+}
+
+// $("#googleBtn").on("click", initMap);
+initMap();
 
 
 
@@ -215,19 +266,68 @@ function getIngredients(id) {
 ////////////////////////////// START OF JESSICA I CODE ///////////////////////////////
 
 
-// $.ajax({
-//     url: "https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=2&apiKey=" + API_KEY,
-//     method: "GET"
-// }).then(function (ingredients) {
-//     console.log(ingredients);
-// });
+// Initialize Firebase and change the values of the config values with your own Firebase config values.
+var config = {
+    apiKey: "AIzaSyBIEGhb7gkafYQGszll5RweQDi31EwC_hE",
+    authDomain: "nom-nom-a0f5a.firebaseapp.com",
+    databaseURL: "https://nom-nom-a0f5a.firebaseio.com",
+    projectId: "nom-nom-a0f5a",
+    storageBucket: "nom-nom-a0f5a.appspot.com",
+    messagingSenderId: "131703612828",
+    appId: "1:131703612828:web:2dbde26d43cea1efb49459",
+    measurementId: "G-P7L4FXRT60"
+};
 
-// $.ajax({
-//     url: "https://api.spoonacular.com/recipes/random?apiKey=" + API_KEY,
-//     method: "GET"
-// }).then(function (popular) {
-//     console.log(popular);
-// });
+firebase.initializeApp(config);
+
+// Create a variable to reference the database
+var database = firebase.database();
+
+// Initial Variables (SET the first set IN FIREBASE FIRST)
+// Note remember to create these same variables in Firebase!
+var email = "";
+var psw = "";
+var pswrepeat = "";
+
+// Click Button changes what is stored in firebase
+$(".signupbtn").on("click", function (event) {
+    // Prevent the page from refreshing
+    event.preventDefault();
+
+    // Get inputs
+    email = $("#email-input").val().trim();
+    psw = $("#psw-input").val().trim();
+    pswrepeat = $("#pswrepeat-input").val().trim();
+
+    // Change what is saved in firebase
+    database.ref().set({
+        email: email,
+        psw: psw,
+        pswrepeat: pswrepeat
+    });
+});
+
+// Firebase is always watching for changes to the data.
+// When changes occurs it will print them to console and html
+database.ref().on("value", function (snapshot) {
+
+    // Print the initial data to the console.
+    console.log(snapshot.val());
+
+    // Log the value of the various properties
+    console.log(snapshot.val().email);
+    console.log(snapshot.val().psw);
+    console.log(snapshot.val().pswrepeat);
+
+    // Change the HTML
+    $("#displayed-data").text(snapshot.val().email + " | " + snapshot.val().psw + " | " + snapshot.val().pswrepeat);
+
+    // If any errors are experienced, log them to console.
+}, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+});
+
+
 
 ///function for menu/// Junko's code///
 

@@ -72,7 +72,7 @@ footer p {
     color: (86, 202, 86);
 }
 
-#general-search {
+#general-search, #ingredients-search {
     margin: 0 auto;
     display: inline-block;
     width: 30%;
@@ -91,15 +91,17 @@ footer p {
     transition: 0.5s;
      padding-top: 15px;
      transform: translateX(-250px);
-    color: #fff;
+
 }
 
-.ingredientSearch {
+
+.generalSearch, .ingredientSearch {
     text-align: center;
+    
 }
 
 .sidenav a:hover {
-    color: #f1f1f1;
+    color:#fed060;
   }
   
 .sidenav .closebtn {

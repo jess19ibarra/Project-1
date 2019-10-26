@@ -13,7 +13,7 @@ $(".btn-add").on("click", function (e) {
     $("#recipe-details, #search-results").empty();
 
     //Gets the value of what the user typed in search bar
-    var query = $(this).val();
+    var query = $("#general-search").val();
 
     //The api call url
     var url = "https://api.spoonacular.com/recipes/search?query=" + query + "&apiKey=" + API_KEY;

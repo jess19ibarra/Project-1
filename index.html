@@ -32,7 +32,7 @@
 
     <!--static nav bar-->
 
-    <div class="container">
+    <!-- <div class="container">
         <header>
             <a href="#"><img class="hpLogo" src="assets/images/nom_nom_logo.png" alt="nomNomLogo" width="87" height="76"
                     id="Insert_logo" /></a>
@@ -46,37 +46,101 @@
             </label>
             <label class="btn btn-secondary">
                 <input type="radio" name="options" id="option3" autocomplete="off"> Trending Recipes
+            </label> -->
+
+    <!--static nav bar-->
+
+    <div class="container">
+        <header>
+            <a href="#"><img class="hpLogo" src="assets/images/nom_nom_logo.png" alt="nomNomLogo" width="87" height="76"
+                    id="Insert_logo" /></a>
+        </header>
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-secondary active">
+                <input type="radio" name="options" id="option1" autocomplete="off" checked> Ingredients Search
+            </label>
+            <label class="btn btn-secondary">
+                <input type="radio" name="options" id="option2" autocomplete="off"> Browse Recipes
+            </label>
+            <label class="btn btn-secondary">
+                <input type="radio" name="options" id="option3" autocomplete="off"> General Search
             </label>
 
         </div>
     </div>
-    </div>
     <br>
-    <div class="container ingredientSearch">
-        <input type="text" class="form-control" id="general-search">
-        <button type="button" class="btn btn-dark btn-add">Add</button>
+    <div class="layout-1">
+        <div class="container ingredientSearch">
+            <input type="text" class="form-control" id="ingredients-search">
+            <button type="button" class="btn btn-dark btn-add">Add</button>
+        </div>
+
+
+        <br>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card cardOne">
+                    <div class="card-body">
+                        <ul class="card-text" id=""></ul>
+                        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card cardTwo">
+                    <div class="card-body">
+                        <ul class="card-text" id="search-results"></ul>
+                        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <br>
+
+    <div class="layout-2">
+        <div class="container ingredientSearch">
+        </div>
+
+        <br>
+
+        <div class="row justify-content-center">
+            <div class="col-sm-10">
+                <div class="card cardOne cardTwo">
+                    <div class="card-body">
+                        <ul class="card-text" id="search-results"></ul>
+                        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <br>
 
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="card cardOne">
-                <div class="card-body">
-                    <ul class="card-text" id=""></ul>
-                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                </div>
-            </div>
+    <div class="layout-3">
+        <div class="container generalSearch">
+            <input type="text" class="form-control" id="general-search">
+            <button type="button" class="btn btn-dark btn-add">Add</button>
         </div>
-        <div class="col-sm-6">
-            <div class="card cardTwo">
-                <div class="card-body">
-                    <ul class="card-text" id="search-results"></ul>
-                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+
+        <br>
+
+        <div class="row justify-content-center">
+            <div class="col-sm-10">
+                <div class="card cardOne cardTwo">
+                    <div class="card-body">
+                        <ul class="card-text" id="search-results"></ul>
+                        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 
 
 

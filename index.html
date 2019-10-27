@@ -16,28 +16,27 @@
 </head>
 
 <body>
-
-    <div class="header"></div>
-    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
+    <span onclick="openNav()" id="burger">&#9776;</span>
     <nav id="mysidenav" class="sidenav">
 
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a class="nav-link active" href="#">Home</a>
-        <a class="nav-link" href="#">Search Recipes</a>
-        <a class="nav-link" href="#">My Recipes</a>
-
+        <a><img class="hpLogo" src="assets/images/nom_nom_logo.png" alt="nomNomLogo" id="Insert_logo" /></a>
+        <a class="nav-link active mt-4" href="/">Home</a>
+        <a class="nav-link" id="myRecipes">My Recipes</a>
+        <a href="login.html" id="loginLink" class="nav-link">Login</a>
+        <a href="login.html" id="logoutLink" class="nav-link">Logout</a>
     </nav>
 
+    <div class="userIcon" id="userLoggedOut"><a href="login.html"><img src="assets/images/user-circle-solid.svg"
+                alt="user-icon"></a></div>
 
+    <div class="userIcon" id="userLoggedIn"><span id="user-email"></span> <img src="assets/images/user-circle-solid.svg"
+            alt="user-icon">
+    </div>
 
-    <a href="login.html" id="loginLink">
-        <div class="userIcon"><img src="assets/images/user-circle-solid.svg" alt="user-icon"> Login</div>
-    </a>
+    <img class="hpLogo" src="assets/images/nom_nom_logo.png" alt="nomNomLogo" id="nnLogo" />
 
-    <a href="login.html" id="logoutLink">
-        <div class="userIcon"><img src="assets/images/user-circle-solid.svg" alt="user-icon"> Logout</div>
-    </a>
-
+<<<<<<< HEAD
     <div class="fade-out">
         <h1>nom nom</h1>
         <img src="assets/images/nom_nom_logo.png" alt="nomNomLogo" style="width:25%" id="Insert_logo">
@@ -47,15 +46,18 @@
 
     <div class="container">
 
+=======
+    <div class="container text-center" id="main-searches">
+>>>>>>> f2625e14fc0fe2485a4f7824720ba3b1d40119f8
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-secondary active">
+            <label class="btn btn-secondary active option-btn">
                 <input type="radio" name="options" id="option1" class="option-btn" autocomplete="off" checked>
                 Ingredients Search
             </label>
-            <label class="btn btn-secondary">
+            <label class="btn btn-secondary option-btn">
                 <input type="radio" name="options" id="option2" class="option-btn" autocomplete="off"> Browse Recipes
             </label>
-            <label class="btn btn-secondary">
+            <label class="btn btn-secondary option-btn">
                 <input type="radio" name="options" id="option3" class="option-btn" autocomplete="off"> General Search
             </label>
 

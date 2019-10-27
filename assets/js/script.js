@@ -395,6 +395,7 @@ $("#logoutLink").on("click", function (e) {
     })
 })
 
+
 ///function for menu/// Junko's code///
 
 function openNav() {

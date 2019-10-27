@@ -1,6 +1,42 @@
-
+@font-face {
+    font-family: 'Lemon/Milk Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Lemon/Milk Regular'), url('fonts/LemonMilk.woff') format('woff');
+}
+@font-face {
+    font-family: 'Lemon/Milk Regular italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Lemon/Milk Regular italic'), url('fonts/LemonMilkitalic.woff') format('woff');
+}
+@font-face {
+    font-family: 'Lemon/Milk light italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Lemon/Milk light italic'), url('fonts/LemonMilklightitalic.woff') format('woff');
+}
+@font-face {
+    font-family: 'Lemon/Milk Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Lemon/Milk Bold'), url('fonts/LemonMilkbold.woff') format('woff');
+}
+@font-face {
+    font-family: 'Lemon/Milk Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Lemon/Milk Bold'), url('fonts/LemonMilkbolditalic.woff') format('woff');
+}
+@font-face {
+    font-family: 'Lemon/Milk light Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Lemon/Milk light Regular'), url('fonts/LemonMilklight.woff') format('woff');
+}
 
 body {
+    position: relative;
     background-color: #fed060;
     min-height: 100vh;
     min-width: 100%;
@@ -13,8 +49,25 @@ body {
 }
 
 .fade-out {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    top: 0;
+    background-color: #fed060;
     text-align: center;
-animation: fadeOut 6s;
+    animation: fadeOut 3s;
+    animation-fill-mode: forwards;
+    animation-delay: 2s;
+    align-items: center;
+    flex-direction: column;
+}
+
+.fade-out h1 {
+    font-family:"Lemon/Milk Regular";
+    font-size: 60px;
 }
 
 @keyframes fadeOut {

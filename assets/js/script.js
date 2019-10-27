@@ -1,8 +1,23 @@
+// Initialize Firebase and change the values of the config values with your own Firebase config values.
+var config = {
+    apiKey: "AIzaSyCIHEL78Eki3saKNSEVF0UbxQm9_uVRSLk",
+    authDomain: "nomnom-43b5b.firebaseapp.com",
+    databaseURL: "https://nomnom-43b5b.firebaseio.com",
+    projectId: "nomnom-43b5b",
+    storageBucket: "nomnom-43b5b.appspot.com",
+    messagingSenderId: "471286336226",
+    appId: "1:471286336226:web:622e73cbcf9ee3b0c82cbb",
+    measurementId: "G-KNKHCM19XZ"
+};
+
+firebase.initializeApp(config);
+
+// Create a variable to reference the database
+var database = firebase.database();
+
 
 //////////////////////////////////// Jarrells Code //////////////////////////////////
 var API_KEY = '09f6d2653d8c4ecd9fcbf576a46890d0';
-
-currentRecipeList = [];
 
 //General Search Code 
 var ingredients = [];
@@ -35,8 +50,6 @@ $(".btn-add").on("click", function (e) {
                 + "<img style='max-width: 400px;' src='https://spoonacular.com/recipeImages/" + result.image + "'>" +
                 "</li>");
         });
-
-        currentRecipeList = Array.from(response.results);
     });
 
 });
@@ -179,7 +192,6 @@ $("#browseButton").on("click", function () {
                 "</li>");
         });
 
-        currentRecipeList = Array.from(response.recipes);
     });
 })
 
@@ -249,6 +261,7 @@ $("#search-results").on("click", ".main-result", function () {
         //Displays recipe details
         $("#recipe-details").html("<h3>" + response.title + "</h3>" +
             "<p>Likes: " + response.aggregateLikes + "</p>" +
+            "<p class='favorite' data-id='" + response.id + "'>Favorite Me</p>" +
             "<p>Health Score: " + response.healthScore + "</p>" +
             "<p>Ready in " + response.readyInMinutes + " minutes</p>" +
             "<p>Price per serving: $" + response.pricePerServing + "</p>" +
@@ -263,71 +276,33 @@ $("#search-results").on("click", ".main-result", function () {
 
 });
 
+$("#recipe-details").on("click", ".favorite", function () {
+    var recipeId = $(this).data("id");
+
+    var user = firebase.auth().currentUser;
+
+    if (user) {
+        firebase.database().ref("users/" + user.uid + "/favorites/").push({
+            recipeId
+        })
+    }
+})
+
+$("#myRecipes").on("click", function () {
+    var user = firebase.auth().currentUser;
+
+    if (user) {
+        firebase.database().ref("users/" + user.uid + "/favorites/").on("child_added", function (data) {
+            console.log(data.val().recipeId);
+        })
+    }
+})
+
 ////////////////////////////// END OF JARRELLS CODE ///////////////////////////////////
 
 ////////////////////////////// START OF JESSICA I CODE ///////////////////////////////
 
 
-// Initialize Firebase and change the values of the config values with your own Firebase config values.
-var config = {
-    apiKey: "AIzaSyCIHEL78Eki3saKNSEVF0UbxQm9_uVRSLk",
-    authDomain: "nomnom-43b5b.firebaseapp.com",
-    databaseURL: "https://nomnom-43b5b.firebaseio.com",
-    projectId: "nomnom-43b5b",
-    storageBucket: "nomnom-43b5b.appspot.com",
-    messagingSenderId: "471286336226",
-    appId: "1:471286336226:web:622e73cbcf9ee3b0c82cbb",
-    measurementId: "G-KNKHCM19XZ"
-};
-
-firebase.initializeApp(config);
-
-// Create a variable to reference the database
-var database = firebase.database();
-
-// Initial Variables (SET the first set IN FIREBASE FIRST)
-// Note remember to create these same variables in Firebase!
-// var email = "";
-// var psw = "";
-// var pswrepeat = "";
-
-// // Click Button changes what is stored in firebase
-// $(".signupbtn").on("click", function (event) {
-//     // Prevent the page from refreshing
-//     event.preventDefault();
-
-//     // Get inputs
-//     email = $("#email-input").val().trim();
-//     psw = $("#psw-input").val().trim();
-//     pswrepeat = $("#pswrepeat-input").val().trim();
-
-//     // Change what is saved in firebase
-//     database.ref().set({
-//         email: email,
-//         psw: psw,
-//         pswrepeat: pswrepeat
-//     });
-// });
-
-// // Firebase is always watching for changes to the data.
-// // When changes occurs it will print them to console and html
-// database.ref().on("value", function (snapshot) {
-
-//     // Print the initial data to the console.
-//     console.log(snapshot.val());
-
-//     // Log the value of the various properties
-//     console.log(snapshot.val().email);
-//     console.log(snapshot.val().psw);
-//     console.log(snapshot.val().pswrepeat);
-
-//     // Change the HTML
-//     $("#displayed-data").text(snapshot.val().email + " | " + snapshot.val().psw + " | " + snapshot.val().pswrepeat);
-
-//     // If any errors are experienced, log them to console.
-// }, function (errorObject) {
-//     console.log("The read failed: " + errorObject.code);
-// });
 
 $(".signupbtn").on("click", function (event) {
     event.preventDefault();
@@ -342,6 +317,26 @@ $(".signupbtn").on("click", function (event) {
         console.log(errorCode);
         console.log(errorMessage);
         // ...
+    });
+
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode);
+        console.log(errorMessage);
+        // ...
+    });
+
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+
+            firebase.database().ref('users/' + user.uid).set({
+                uid: user.uid
+            })
+
+            window.location.href = "index.html";
+        }
     });
 })
 
@@ -366,9 +361,6 @@ $("#login").on("click", function (event) {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             window.location.href = "index.html";
-        } else {
-            // No user is signed in.
-
         }
     });
 });
@@ -377,24 +369,21 @@ firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         $("#loginLink").hide();
         $("#logoutLink").show();
+        $("#userLoggedIn").show();
+        $("#userLoggedOut").hide();
+        var emailArr = user.email.split("@");
+        var email = emailArr[0];
+        $("#user-email").text(email);
+        console.log(user);
     } else {
         // No user is signed in.
         $("#loginLink").show();
         $("#logoutLink").hide();
+        $("#userLoggedIn").hide();
+        $("#userLoggedOut").show();
     }
 });
 
-// var user = firebase.auth().currentUser;
-
-// if (user) {
-//     // User is signed in.
-//     $("#loginLink").hide();
-//     $("#logoutLink").show();
-// } else {
-//     // No user is signed in.
-//     $("#loginLink").show();
-//     $("#logoutLink").hide();
-// }
 
 $("#logoutLink").on("click", function (e) {
     e.preventDefault();

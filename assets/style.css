@@ -126,6 +126,10 @@ footer p {
     color: #fff;
 }
 
+#myRecipes:hover {
+    color: #fed060;
+}
+
 .generalSearch, .ingredientSearch {
     text-align: center;
     

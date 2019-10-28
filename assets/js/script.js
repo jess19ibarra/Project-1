@@ -1,3 +1,9 @@
+//Fade Out
+setInterval(function () {
+    $(".fade-out").hide();
+}, 5000)
+
+
 // Initialize Firebase and change the values of the config values with your own Firebase config values.
 var config = {
     apiKey: "AIzaSyCIHEL78Eki3saKNSEVF0UbxQm9_uVRSLk",
@@ -294,6 +300,9 @@ $("#myRecipes").on("click", function () {
     if (user) {
         firebase.database().ref("users/" + user.uid + "/favorites/").on("child_added", function (data) {
             console.log(data.val().recipeId);
+
+
+
         })
     }
 })

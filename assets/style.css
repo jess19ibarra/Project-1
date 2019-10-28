@@ -2,37 +2,37 @@
     font-family: 'Lemon/Milk Regular';
     font-style: normal;
     font-weight: normal;
-    src: local('Lemon/Milk Regular'), url('fonts/LemonMilk.woff') format('woff');
+    src: local('Lemon/Milk Regular'), url('fonts/LemonMilk.otf') format('woff');
 }
 @font-face {
     font-family: 'Lemon/Milk Regular italic';
     font-style: normal;
     font-weight: normal;
-    src: local('Lemon/Milk Regular italic'), url('fonts/LemonMilkitalic.woff') format('woff');
+    src: local('Lemon/Milk Regular italic'), url('fonts/LemonMilkitalic.otf') format('woff');
 }
 @font-face {
     font-family: 'Lemon/Milk light italic';
     font-style: normal;
     font-weight: normal;
-    src: local('Lemon/Milk light italic'), url('fonts/LemonMilklightitalic.woff') format('woff');
+    src: local('Lemon/Milk light italic'), url('fonts/LemonMilklightitalic.otf') format('woff');
 }
 @font-face {
     font-family: 'Lemon/Milk Bold';
     font-style: normal;
     font-weight: normal;
-    src: local('Lemon/Milk Bold'), url('fonts/LemonMilkbold.woff') format('woff');
+    src: local('Lemon/Milk Bold'), url('fonts/LemonMilkbold.otf') format('woff');
 }
 @font-face {
     font-family: 'Lemon/Milk Bold';
     font-style: normal;
     font-weight: normal;
-    src: local('Lemon/Milk Bold'), url('fonts/LemonMilkbolditalic.woff') format('woff');
+    src: local('Lemon/Milk Bold'), url('fonts/LemonMilkbolditalic.otf') format('woff');
 }
 @font-face {
     font-family: 'Lemon/Milk light Regular';
     font-style: normal;
     font-weight: normal;
-    src: local('Lemon/Milk light Regular'), url('fonts/LemonMilklight.woff') format('woff');
+    src: local('Lemon/Milk light Regular'), url('fonts/LemonMilklight.otf') format('woff');
 }
 
 body {

@@ -167,7 +167,7 @@ $("#ingredients-search").on("change", function (e) {
 
                 ///for the google places modal///　ジェイラ
 
-                googleBtn = "<button type='button' class='btn btn-dark'data-toggle='modal' data-target='#googleModel' id='googleBtn'>View Nearby Stores</button>";
+                googleBtn = "<button type='button' class='btn btn-dark googleBtn 'data-toggle='modal' data-target='#googleModel'>View Nearby Stores</button>";
             } else {
                 missingString = "None!";
                 googleBtn = "";
@@ -192,6 +192,8 @@ var infowindow;
 
 function initMap() {
     var dallas = new google.maps.LatLng(-33.867, 151.195);
+
+    console.log("logging")
 
     infowindow = new google.maps.InfoWindow();
 
@@ -228,7 +230,7 @@ function createMarker(place) {
     });
 }
 
-// $("#googleBtn").on("click", initMap);
+$("#search-results").on("click", ".googleBtn", initMap);
 
 
 

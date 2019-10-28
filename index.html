@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="icon" type="image/png" href="assets/images/nom_nom_logo.png">
+
+    <title>Nom Nom</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -30,25 +32,27 @@
     <div class="userIcon" id="userLoggedOut"><a href="login.html"><img src="assets/images/user-circle-solid.svg"
                 alt="user-icon"></a></div>
 
-    <div class="container text-center" id="main-searches"></div>
-    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-        <label class="btn btn-secondary option-btn" id="ingredientBtn">
-            <input type="radio" name="options" id="option1" class="option-btn" autocomplete="off" checked>
-            Ingredients Search
-        </label>
-        <label class="btn btn-secondary option-btn" id="browseBtn">
-            <input type="radio" name="options" id="option2" class="option-btn" autocomplete="off"> Browse Recipes
-        </label>
-        <label class="btn btn-secondary option-btn" id="generalBtn">
-            <input type="radio" name="options" id="option3" class="option-btn" autocomplete="off"> General Search
-        </label>
-    </div>
+    <div class="container text-center" id="main-searches">
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-secondary option-btn" id="ingredientBtn">
+                <input type="radio" name="options" id="option1" class="option-btn" autocomplete="off" checked>
+                Ingredients Search
+            </label>
+            <label class="btn btn-secondary option-btn" id="browseBtn">
+                <input type="radio" name="options" id="option2" class="option-btn" autocomplete="off"> Browse Recipes
+            </label>
+            <label class="btn btn-secondary option-btn" id="generalBtn">
+                <input type="radio" name="options" id="option3" class="option-btn" autocomplete="off"> General Search
+            </label>
+        </div>
     </div>
     <div class="userIcon" id="userLoggedIn"><span id="user-email"></span> <img src="assets/images/user-circle-solid.svg"
             alt="user-icon">
     </div>
 
     <img class="hpLogo" src="assets/images/nom_nom_logo.png" alt="nomNomLogo" id="nnLogo" />
+
+    <!-- Fade out logo -->
 
     <div class="fade-out">
         <h1>Nom Nom</h1>
@@ -65,14 +69,14 @@
         </div>
         <br>
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <div class="card cardOne">
                     <div class="card-body">
                         <ul class="card-text" id="ingredientsList"></ul>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-8">
                 <div class="card cardTwo">
                     <div class="card-body">
                         <ul class="card-text" id="search-results"></ul>
@@ -82,8 +86,6 @@
         </div>
     </div>
     </div>
-
-    <br>
     <div class="layout-2">
         <div class="container browse-recipes">
         </div>
@@ -98,13 +100,10 @@
             </div>
         </div>
     </div>
-
-    <br>
-
     <div class="layout-3">
         <div class="container generalSearch">
             <input type="text" class="form-control" id="general-search">
-            <button type="button" class="btn btn-dark btn-add">Add</button>
+            <button type="button" class="btn btn-dark btn-add">Search</button>
         </div>
         <br>
         <div class="row justify-content-center">

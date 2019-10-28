@@ -81,13 +81,19 @@ body {
 }
 
 .cardOne {
-    margin-left:10%; 
+    margin-left:10%;
+   
 
 }
 
 .cardTwo {
     margin-right:10%;   
 
+}
+
+.card {
+    overflow-y: auto;
+    height: 456px;
 }
 
 
@@ -191,6 +197,10 @@ footer p {
 #myRecipes {
     cursor: pointer;
     color: #fff;
+}
+
+#myRecipes:hover {
+    color: #fed060;
 }
 
 .generalSearch, .ingredientSearch {

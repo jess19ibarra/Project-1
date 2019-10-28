@@ -60,6 +60,14 @@ var API_KEY = '09f6d2653d8c4ecd9fcbf576a46890d0';
 
 //General Search Code 
 
+$("#generalBtn").on("click", function () {
+    $(".layout-1").hide();
+    $(".layout-2").hide();
+    $(".layout-3").show();
+
+
+})
+
 var ingredients = [];
 //Event Handler to run when user types in input
 $(".btn-add").on("click", function (e) {
@@ -98,9 +106,9 @@ $(".btn-add").on("click", function (e) {
 //Ingredients Search Code
 
 $("#ingredientBtn").on("click", function () {
-    $("#layout-1").show();
-    $("#layout-2").hide();
-    $("#layout-3").hide();
+    $(".layout-1").show();
+    $(".layout-2").hide();
+    $(".layout-3").hide();
 
 
 })
@@ -219,6 +227,14 @@ function createMarker(place) {
 
 
 //Browse Recipes Code
+
+$("#browseBtn").on("click", function () {
+    $(".layout-1").hide();
+    $(".layout-2").show();
+    $(".layout-3").hide();
+
+
+})
 
 
 $("#browseButton").on("click", function () {

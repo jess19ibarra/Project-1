@@ -16,40 +16,43 @@
 </head>
 
 <body>
-
-    <div class="header"></div>
-    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
+    <span onclick="openNav()" id="burger">&#9776;</span>
     <nav id="mysidenav" class="sidenav">
 
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a class="nav-link active" href="#">Home</a>
-        <a class="nav-link" href="#">Search Recipes</a>
-        <a class="nav-link" href="#">My Recipes</a>
-
+        <a><img class="hpLogo" src="assets/images/nom_nom_logo.png" alt="nomNomLogo" id="Insert_logo" /></a>
+        <a class="nav-link active mt-4" href="/">Home</a>
+        <a class="nav-link" id="myRecipes">My Recipes</a>
+        <a href="login.html" id="loginLink" class="nav-link">Login</a>
+        <a href="login.html" id="logoutLink" class="nav-link">Logout</a>
     </nav>
 
-    <a href="login.html">
-        <div class="userIcon"><img src="assets/images/user-circle-solid.svg" alt="user-icon"></div>
-    </a>
+    <div class="userIcon" id="userLoggedOut"><a href="login.html"><img src="assets/images/user-circle-solid.svg"
+                alt="user-icon"></a></div>
 
-    <div class="container">
-        <header>
-            <a href="#"><img class="hpLogo" src="assets/images/nom_nom_logo.png" alt="nomNomLogo" width="87" height="76"
-                    id="Insert_logo" /></a>
-        </header>
-        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-secondary active" id="ingredientBtn">
-                <input type="radio" name="options" id="option1" class="option-btn" autocomplete="off" checked>
-                Ingredients Search
-            </label>
-            <label class="btn btn-secondary" id="browseBtn">
-                <input type="radio" name="options" id="option2" class="option-btn" autocomplete="off"> Browse Recipes
-            </label>
-            <label class="btn btn-secondary" id="generalBtn">
-                <input type="radio" name="options" id="option3" class="option-btn" autocomplete="off"> General Search
-            </label>
+    <div class="container text-center" id="main-searches"></div>
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <label class="btn btn-secondary option-btn" id="ingredientBtn">
+            <input type="radio" name="options" id="option1" class="option-btn" autocomplete="off" checked>
+            Ingredients Search
+        </label>
+        <label class="btn btn-secondary option-btn" id="browseBtn">
+            <input type="radio" name="options" id="option2" class="option-btn" autocomplete="off"> Browse Recipes
+        </label>
+        <label class="btn btn-secondary option-btn" id="generalBtn">
+            <input type="radio" name="options" id="option3" class="option-btn" autocomplete="off"> General Search
+        </label>
+    </div>
+    </div>
+    <div class="userIcon" id="userLoggedIn"><span id="user-email"></span> <img src="assets/images/user-circle-solid.svg"
+            alt="user-icon">
+    </div>
 
-        </div>
+    <img class="hpLogo" src="assets/images/nom_nom_logo.png" alt="nomNomLogo" id="nnLogo" />
+
+    <div class="fade-out">
+        <h1>Nom Nom</h1>
+        <img src="assets/images/nom_nom_logo.png" alt="nomNomLogo" style="width:25%" id="Insert_logo">
     </div>
 
     <br>
@@ -78,8 +81,7 @@
             </div>
         </div>
     </div>
-    <!-- </div> -->
-
+    </div>
 
     <br>
     <div class="layout-2">
@@ -102,7 +104,7 @@
     <div class="layout-3">
         <div class="container generalSearch">
             <input type="text" class="form-control" id="general-search">
-            <button type="button" class="btn btn-dark btn-add">Search</button>
+            <button type="button" class="btn btn-dark btn-add">Add</button>
         </div>
         <br>
         <div class="row justify-content-center">
@@ -115,7 +117,6 @@
             </div>
         </div>
     </div>
-
 
 
 
@@ -160,7 +161,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" id="map">
+                <div class="modal-body" style="position: relative;overflow: hidden;height: 250px;" id="map">
                     ...
                 </div>
                 <div class="modal-footer">
@@ -184,6 +185,12 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
+    <!-- Firebase Core JavaScript Link -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+    <!-- Specific Firebase products we want (Database) -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-auth.js"></script>
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBr9Pvzu3IdPGeBUSBN126B2v8fTGfBbww&libraries=places"></script>
     <script src="assets/js/script.js"></script>

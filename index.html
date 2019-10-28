@@ -45,168 +45,167 @@
 
     <br>
 
-    <div class="container">
 
-        <div class="container text-center" id="main-searches">
-            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-secondary active option-btn">
-                    <input type="radio" name="options" id="option1" class="option-btn" autocomplete="off" checked>
-                    Ingredients Search
-                </label>
-                <label class="btn btn-secondary option-btn">
-                    <input type="radio" name="options" id="option2" class="option-btn" autocomplete="off"> Browse
-                    Recipes
-                </label>
-                <label class="btn btn-secondary option-btn">
-                    <input type="radio" name="options" id="option3" class="option-btn" autocomplete="off"> General
-                    Search
-                </label>
+    <div class="container text-center" id="main-searches">
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-secondary active option-btn">
+                <input type="radio" name="options" id="option1" class="option-btn" autocomplete="off" checked>
+                Ingredients Search
+            </label>
+            <label class="btn btn-secondary option-btn">
+                <input type="radio" name="options" id="option2" class="option-btn" autocomplete="off"> Browse
+                Recipes
+            </label>
+            <label class="btn btn-secondary option-btn">
+                <input type="radio" name="options" id="option3" class="option-btn" autocomplete="off"> General
+                Search
+            </label>
 
-            </div>
         </div>
+    </div>
 
+    <br>
+
+    <div class="layout">
+        <div class="container ingredientSearch">
+            <input type="text" class="form-control" id="ingredients-search">
+            <button type="button" class="btn btn-dark btn-add">Add</button>
+        </div>
         <br>
-
-        <div class="layout">
-            <div class="container ingredientSearch">
-                <input type="text" class="form-control" id="ingredients-search">
-                <button type="button" class="btn btn-dark btn-add">Add</button>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="card cardOne">
-                        <div class="card-body">
-                            <ul class="card-text" id="ingredientsList"></ul>
-                        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card cardOne">
+                    <div class="card-body">
+                        <ul class="card-text" id="ingredientsList"></ul>
                     </div>
                 </div>
-                <div class="col-sm-6">
-                    <div class="card cardTwo">
-                        <div class="card-body">
-                            <ul class="card-text" id="search-results"></ul>
-                        </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card cardTwo">
+                    <div class="card-body">
+                        <ul class="card-text" id="search-results"></ul>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- <div class="layout-1">
+    <!-- <div class="layout-1">
 
     </div> -->
 
-        <br>
+    <br>
 
-        <div class="layout-2">
-            <div class="container ingredientSearch">
-            </div>
-            <br>
-            <div class="row justify-content-center">
-                <div class="col-sm-10">
-                    <div class="card cardOne cardTwo">
-                        <div class="card-body">
-                            <ul class="card-text" id="search-results"></ul>
-                        </div>
+    <div class="layout-2">
+        <div class="container ingredientSearch">
+        </div>
+        <br>
+        <div class="row justify-content-center">
+            <div class="col-sm-10">
+                <div class="card cardOne cardTwo">
+                    <div class="card-body">
+                        <ul class="card-text" id="search-results"></ul>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
+    <br>
+
+    <div class="layout-3">
+        <div class="container generalSearch">
+            <input type="text" class="form-control" id="general-search">
+            <button type="button" class="btn btn-dark btn-add">Add</button>
+        </div>
         <br>
-
-        <div class="layout-3">
-            <div class="container generalSearch">
-                <input type="text" class="form-control" id="general-search">
-                <button type="button" class="btn btn-dark btn-add">Add</button>
-            </div>
-            <br>
-            <div class="row justify-content-center">
-                <div class="col-sm-10">
-                    <div class="card cardOne cardTwo">
-                        <div class="card-body">
-                            <ul class="card-text" id="search-results"></ul>
-                        </div>
+        <div class="row justify-content-center">
+            <div class="col-sm-10">
+                <div class="card cardOne cardTwo">
+                    <div class="card-body">
+                        <ul class="card-text" id="search-results"></ul>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
 
 
 
-        <p>Find By Ingredients</p>
-        <input type="text" id="ingredients-search">
+    <p>Find By Ingredients</p>
+    <input type="text" id="ingredients-search">
 
-        <p>Browse Recipes</p>
-        <button id="browseButton">Browse</button>
+    <p>Browse Recipes</p>
+    <button id="browseButton">Browse</button>
 
-        <p>Ingredients List - <span id="ingredientsClear">Clear</span></p>
-        <ul id="myIngredients"></ul>
+    <p>Ingredients List - <span id="ingredientsClear">Clear</span></p>
+    <ul id="myIngredients"></ul>
 
-        <p>Search Results</p>
-        <ul id="search-results">
-            <!-- <li>
+    <p>Search Results</p>
+    <ul id="search-results">
+        <!-- <li>
             <h3>Title</h3>
             <p>text</p>
         </li> -->
-        </ul>
+    </ul>
 
-        <div id="current-recipe">
-            <div id="recipe-details"></div>
+    <div id="current-recipe">
+        <div id="recipe-details"></div>
 
-            <h3>Instructions:</h3>
-            <div id="instructions"></div>
+        <h3>Instructions:</h3>
+        <div id="instructions"></div>
 
-            <h3>Ingredients:</h3>
-            <div id="ingredients"></div>
-        </div>
+        <h3>Ingredients:</h3>
+        <div id="ingredients"></div>
+    </div>
 
-        <button type="button" class='btn btn-dark' data-toggle='modal' data-target='#googleModel'>View Nearby
-            Stores</button>
+    <button type="button" class='btn btn-dark' data-toggle='modal' data-target='#googleModel'>View Nearby
+        Stores</button>
 
-        <div class="modal fade" id="googleModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body" style="position: relative;overflow: hidden;height: 250px;" id="map">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
+    <div class="modal fade" id="googleModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="position: relative;overflow: hidden;height: 250px;" id="map">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
+    </div>
 
 
-        <!-- <footer>
+    <!-- <footer>
         <p>Brought to you by SMU Coding Bootcamp Group</p>
     </footer> -->
 
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 
-        <!-- Firebase Core JavaScript Link -->
-        <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
-        <!-- Specific Firebase products we want (Database) -->
-        <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-auth.js"></script>
-        <script type="text/javascript"
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBr9Pvzu3IdPGeBUSBN126B2v8fTGfBbww&libraries=places"></script>
-        <script src="assets/js/script.js"></script>
+    <!-- Firebase Core JavaScript Link -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+    <!-- Specific Firebase products we want (Database) -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-auth.js"></script>
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBr9Pvzu3IdPGeBUSBN126B2v8fTGfBbww&libraries=places"></script>
+    <script src="assets/js/script.js"></script>
 
 </body>
 

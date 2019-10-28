@@ -38,14 +38,14 @@
                     id="Insert_logo" /></a>
         </header>
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-secondary active">
+            <label class="btn btn-secondary active" id="ingredientBtn">
                 <input type="radio" name="options" id="option1" class="option-btn" autocomplete="off" checked>
                 Ingredients Search
             </label>
-            <label class="btn btn-secondary">
+            <label class="btn btn-secondary" id="browseBtn">
                 <input type="radio" name="options" id="option2" class="option-btn" autocomplete="off"> Browse Recipes
             </label>
-            <label class="btn btn-secondary">
+            <label class="btn btn-secondary" id="generalBtn">
                 <input type="radio" name="options" id="option3" class="option-btn" autocomplete="off"> General Search
             </label>
 
@@ -54,7 +54,8 @@
 
     <br>
 
-    <div class="layout">
+    <!-- <div class="layout"> -->
+    <div class="layout-1">
         <div class="container ingredientSearch">
             <input type="text" class="form-control" id="ingredients-search">
             <button type="button" class="btn btn-dark btn-add">Add</button>
@@ -77,26 +78,12 @@
             </div>
         </div>
     </div>
+    <!-- </div> -->
 
-    <!-- <div class="layout-1">
-
-    </div> -->
-
-
-    <script>
-
-        $(".option-btn").on("click", function (e) {
-            e.preventDefault()
-
-        })
-
-
-    </script>
 
     <br>
-
     <div class="layout-2">
-        <div class="container ingredientSearch">
+        <div class="container browse-recipes">
         </div>
         <br>
         <div class="row justify-content-center">
@@ -115,7 +102,7 @@
     <div class="layout-3">
         <div class="container generalSearch">
             <input type="text" class="form-control" id="general-search">
-            <button type="button" class="btn btn-dark btn-add">Add</button>
+            <button type="button" class="btn btn-dark btn-add">Search</button>
         </div>
         <br>
         <div class="row justify-content-center">
@@ -128,6 +115,7 @@
             </div>
         </div>
     </div>
+
 
 
 

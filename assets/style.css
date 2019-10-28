@@ -119,3 +119,8 @@ footer p {
   .main-result h3{
     font-size: 18px;
   }
+
+  .layout-1, .layout-2, .layout-3 {
+
+    display: none; 
+  }

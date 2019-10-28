@@ -1,10 +1,50 @@
 
+// $(".option-btn").on("click", function (e) {
+//     e.preventDefault()
+
+//     var btn = $(this).attr('id');
+//     var html = "";
+//     if (btn === "option1") {
+//         html = '<div class="container ingredientSearch">' +
+//             '<input type="text" class="form-control" id="ingredients-search">' +
+//             '<button type="button" class="btn btn-dark btn-add">Add</button>' +
+//             '</div>' +
+//             '<br>' +
+//             '<div class="row">' +
+//             '<div class="col-sm-6">' +
+//             '<div class="card cardOne">' +
+//             '<div class="card-body">' +
+//             '<ul class="card-text" id="ingredientsList"></ul>' +
+//             '</div>' +
+//             '</div>' +
+//             '</div>' +
+//             '<div class="col-sm-6">' +
+//             '<div class="card cardTwo">' +
+//             '<div class="card-body">' +
+//             '<ul class="card-text" id="search-results"></ul>' +
+//             '</div>' +
+//             '</div>' +
+//             '</div>' +
+//             '</div>'
+//         {
+//             context = ingredients
+//         }
+
+//     }
+
+//     $(".layout").html()
+// })
+
+
+
+
 //////////////////////////////////// Jarrells Code //////////////////////////////////
 var API_KEY = '09f6d2653d8c4ecd9fcbf576a46890d0';
 
 currentRecipeList = [];
 
 //General Search Code 
+
 var ingredients = [];
 //Event Handler to run when user types in input
 $(".btn-add").on("click", function (e) {
@@ -42,7 +82,16 @@ $(".btn-add").on("click", function (e) {
 });
 
 
-//Recipe Search Code
+//Ingredients Search Code
+
+$("#ingredientBtn").on("click", function () {
+    $("#layout-1").show();
+    $("#layout-2").hide();
+    $("#layout-3").hide();
+
+
+})
+
 
 var myIngredients = [];
 

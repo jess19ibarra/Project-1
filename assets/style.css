@@ -2,37 +2,37 @@
     font-family: 'Lemon/Milk Regular';
     font-style: normal;
     font-weight: normal;
-    src: local('Lemon/Milk Regular'), url('fonts/LemonMilk.otf') format('woff');
+    src: local('Lemon/Milk Regular'), url('../fonts/LemonMilk.woff') format('woff');
 }
 @font-face {
     font-family: 'Lemon/Milk Regular italic';
     font-style: normal;
     font-weight: normal;
-    src: local('Lemon/Milk Regular italic'), url('fonts/LemonMilkitalic.otf') format('woff');
+    src: local('Lemon/Milk Regular italic'), url('../fonts/LemonMilkitalic.woff') format('woff');
 }
 @font-face {
     font-family: 'Lemon/Milk light italic';
     font-style: normal;
     font-weight: normal;
-    src: local('Lemon/Milk light italic'), url('fonts/LemonMilklightitalic.otf') format('woff');
+    src: local('Lemon/Milk light italic'), url('../fonts/LemonMilklightitalic.woff') format('woff');
 }
 @font-face {
     font-family: 'Lemon/Milk Bold';
     font-style: normal;
     font-weight: normal;
-    src: local('Lemon/Milk Bold'), url('fonts/LemonMilkbold.otf') format('woff');
+    src: local('Lemon/Milk Bold'), url('../fonts/LemonMilkbold.woff') format('woff');
 }
 @font-face {
     font-family: 'Lemon/Milk Bold';
     font-style: normal;
     font-weight: normal;
-    src: local('Lemon/Milk Bold'), url('fonts/LemonMilkbolditalic.otf') format('woff');
+    src: local('Lemon/Milk Bold'), url('../fonts/LemonMilkbolditalic.woff') format('woff');
 }
 @font-face {
     font-family: 'Lemon/Milk light Regular';
     font-style: normal;
     font-weight: normal;
-    src: local('Lemon/Milk light Regular'), url('fonts/LemonMilklight.otf') format('woff');
+    src: local('Lemon/Milk light Regular'), url('../fonts/LemonMilklight.woff') format('woff');
 }
 
 body {
@@ -44,6 +44,12 @@ body {
 
 .card-body {
     background-color: #ffffff;
+}
+
+@media screen and (min-width: 1200px){
+    .main-container {
+        max-width: 90%;
+    }
 }
 
 .fade-out {
@@ -84,7 +90,6 @@ body {
 }
 
 .cardOne {
-    margin-left:10%;
     overflow: hidden;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
@@ -95,7 +100,6 @@ body {
 }
 
 .cardTwo {
-    margin-right:10%;  
     overflow: hidden; 
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
@@ -110,7 +114,7 @@ body {
 }
 
 
-.btn-secondary {
+.option-btn {
     padding:2vh;   
 }
 
@@ -119,7 +123,7 @@ body {
     margin-left: 25px;
     margin-top: 10px;
     font-size:40px;
-    cursor:pointer
+    cursor:pointer;
 }
 
 #nnLogo {
@@ -270,4 +274,12 @@ footer p {
 
 li {
     font-size: 14px;
+}
+
+@media (min-width: 576px){
+
+    .modal-dialog {
+        max-width: 80%;
+        margin: 1.75rem auto;
+    }
 }

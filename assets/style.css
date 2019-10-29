@@ -270,3 +270,9 @@ footer p {
 li {
     font-size: 14px;
 }
+
+@media (min-width: 576px)
+.modal-dialog {
+    max-width: 80%;
+    margin: 1.75rem auto;
+}

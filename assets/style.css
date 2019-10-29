@@ -200,6 +200,8 @@ footer p {
 
 .ingredientsClear {
     cursor: pointer;
+    float: right;
+    
 }
 
 .sidenav{

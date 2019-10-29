@@ -22,7 +22,7 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 //////////////////////////////////// Jarrells Code //////////////////////////////////
-var API_KEY = '0b2f00d76717490db1eb9da7457b0030';
+var API_KEY = 'f6b0191db074400e9f49de7c57844a19';
 
 //General Search Code 
 
@@ -99,7 +99,7 @@ $(".ingredient-add").on("click", function (e) {
 
     $("#ingredientsList").empty();
     myIngredients.forEach(function (ingredient) {
-        $("#ingredientsList").append("<li class='ingredient'><p>" + ingredient + "</p><p class='removeIngredient'>X</p></li>");
+        $("#ingredientsList").append("<li class='ingredient'><p>" + ingredient + "</p><i class='removeIngredient fas fa-times'></i></li>");
     })
 
     $("#ingredients-search").val("");

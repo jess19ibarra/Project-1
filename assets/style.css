@@ -252,6 +252,7 @@ footer p {
 
 .removeIngredient {
     cursor: pointer;
+    font-size: 20px;
 }
 
 #ingredientsClear {

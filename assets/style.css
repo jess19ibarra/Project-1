@@ -161,10 +161,13 @@ body {
 }
 
 footer {
-    background-color:  rgb(255, 255, 255);
+    background-color: #111111;
     position: fixed;
     bottom: 0;
-    width: 100%;  
+    width: 100%; 
+    left: 0;
+    color: white; 
+    padding: 15px;
 }
 
 footer p {
@@ -271,13 +274,3 @@ li {
     font-size: 14px;
 }
 
-<<<<<<< HEAD
-=======
-@media (min-width: 576px){
-
-    .modal-dialog {
-        max-width: 80%;
-        margin: 1.75rem auto;
-    }
-}
->>>>>>> deea1a9e619edde0b30a5e1623a269561137c97b

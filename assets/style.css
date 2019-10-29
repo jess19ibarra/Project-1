@@ -46,12 +46,6 @@ body {
     background-color: #ffffff;
 }
 
-@media screen and (min-width: 1200px){
-    .main-container {
-        max-width: 90%;
-    }
-}
-
 .fade-out {
     display: flex;
     justify-content: center;
@@ -90,6 +84,7 @@ body {
 }
 
 .cardOne {
+    margin-left:10%;
     overflow: hidden;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
@@ -100,6 +95,7 @@ body {
 }
 
 .cardTwo {
+    margin-right:10%;  
     overflow: hidden; 
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
@@ -114,7 +110,7 @@ body {
 }
 
 
-.option-btn {
+.btn-secondary {
     padding:2vh;   
 }
 
@@ -123,7 +119,7 @@ body {
     margin-left: 25px;
     margin-top: 10px;
     font-size:40px;
-    cursor:pointer;
+    cursor:pointer
 }
 
 #nnLogo {
@@ -275,8 +271,3 @@ li {
     font-size: 14px;
 }
 
-@media (min-width: 576px)
-.modal-dialog {
-    max-width: 80%;
-    margin: 1.75rem auto;
-}

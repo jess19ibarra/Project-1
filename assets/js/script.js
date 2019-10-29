@@ -290,6 +290,7 @@ function getInstructions(id) {
         method: "GET"
     }).then(function (steps) {
         //loops the instructions array and adds it to the instructions html
+        $("#instructions").append("<h3>Instructions:</h3>");
         steps[0].steps.forEach(function (step) {
             $("#instructions").append("<p><strong>" + step.number + "</strong>: " + step.step + " </p>");
         });
@@ -307,6 +308,7 @@ function getIngredients(id) {
         method: "GET"
     }).then(function (ingredients) {
         //loops the ingrediets array and adds it to the ingredients html
+        $("#ingredients").append("<h3>Ingredients:</h3>");
         ingredients.ingredients.forEach(function (ingredient) {
             $("#ingredients").append("<p><strong>" + ingredient.name + "</strong>: " + ingredient.amount.us.value + " " + ingredient.amount.us.unit + " </p>");
         });
@@ -316,7 +318,7 @@ function getIngredients(id) {
 //Populate search results in list form code
 
 //Event Handler for when user clicks result item
-$("#search-results").on("click", ".main-result", function () {
+$("#search-results, #favorite-results, #browse-results, #ingredient-results").on("click", ".main-result", function () {
 
     //Empties the html results
     $("#recipe-details, #instructions, #search-results").empty();

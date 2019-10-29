@@ -235,8 +235,6 @@ function createMarker(place) {
 
 $("#ingredient-results").on("click", ".googleBtn", initMap);
 
-
-
 //Browse Recipes Code
 
 $("#browseBtn").on("click", function () {

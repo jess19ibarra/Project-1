@@ -1,7 +1,7 @@
 //Fade Out
 setInterval(function () {
     $(".fade-out").hide();
-}, 5000)
+}, 3500);
 
 
 // Initialize Firebase and change the values of the config values with your own Firebase config values.
@@ -70,7 +70,7 @@ $("#generalBtn").on("click", function () {
     $(".layout-1").hide();
     $(".layout-2").hide();
     $(".layout-3").show();
-
+    $(".layout-4").hide();
 
 })
 
@@ -92,7 +92,6 @@ $(".btn-add").on("click", function (e) {
         url,
         method: "GET"
     }).then(function (response) {
-        console.log(response);
         // $("#search-results").empty();
 
         //Loops through search results and adds the list of recipes that pops up
@@ -115,7 +114,7 @@ $("#ingredientBtn").on("click", function () {
     $(".layout-1").show();
     $(".layout-2").hide();
     $(".layout-3").hide();
-
+    $(".layout-4").hide();
 
 })
 
@@ -123,7 +122,6 @@ $("#ingredientBtn").on("click", function () {
 var myIngredients = [];
 
 $("#ingredients-search").on("change", function (e) {
-    console.log(this)
     //Empties the html results
     $("#recipe-details, #search-results").empty();
 
@@ -134,23 +132,21 @@ $("#ingredients-search").on("change", function (e) {
 
     $("#ingredientsList").empty();
     myIngredients.forEach(function (ingredient) {
-        $("#ingredientsList").append("<li class='ingredient'>" + ingredient + "</li>");
+        $("#ingredientsList").append("<li class='ingredient'><p>" + ingredient + "</p><p class='removeIngredient'>X</p></li>");
     })
 
     $(this).val("");
 
     var queryIngredients = myIngredients.join(",");
-    console.log(queryIngredients);
 
     var ingredientsUrl = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + queryIngredients + "&number=10&apiKey=" + API_KEY;
 
-    $("#search-results").empty();
+    $("#ingredient-results").empty();
 
     $.ajax({
         url: ingredientsUrl,
         method: "GET"
     }).then(function (response) {
-        console.log(response);
 
         response.forEach(function (result) {
             var missingString;
@@ -173,7 +169,7 @@ $("#ingredients-search").on("change", function (e) {
                 googleBtn = "";
             }
 
-            $("#search-results").append("<li class='main-result' data-recipe-id='" + result.id + "'>" +
+            $("#ingredient-results").append("<li class='main-result' data-recipe-id='" + result.id + "'>" +
                 "<h3>" + result.title + "</h3>" +
                 "<p>Likes: " + result.likes + "</p>" +
                 "<p>Missing Ingredients: " + missingString + "</p>" +
@@ -184,6 +180,15 @@ $("#ingredients-search").on("change", function (e) {
     })
 });
 
+$("#ingredientsList").on("click", ".removeIngredient", function () {
+    var ingredient = $(this).prev().text();
+
+    var index = myIngredients.indexOf(ingredient);
+    myIngredients.splice(index, 1);
+
+    $(this).parent().remove();
+});
+
 ///google places api is the worst/// グーグルプレイズは最悪だ。
 
 var map;
@@ -192,8 +197,6 @@ var infowindow;
 
 function initMap() {
     var dallas = new google.maps.LatLng(-33.867, 151.195);
-
-    console.log("logging")
 
     infowindow = new google.maps.InfoWindow();
 
@@ -230,7 +233,7 @@ function createMarker(place) {
     });
 }
 
-$("#search-results").on("click", ".googleBtn", initMap);
+$("#ingredient-results").on("click", ".googleBtn", initMap);
 
 //Browse Recipes Code
 
@@ -238,24 +241,26 @@ $("#browseBtn").on("click", function () {
     $(".layout-1").hide();
     $(".layout-2").show();
     $(".layout-3").hide();
+    $(".layout-4").hide();
 
 
 })
 
 
 $("#browseButton").on("click", function () {
+    $("#browse-results").empty();
+
     var url = "https://api.spoonacular.com/recipes/random?number=10&apiKey=" + API_KEY;
 
     $.ajax({
         url,
         method: "GET"
     }).then(function (response) {
-        console.log(response);
         // $("#search-results").empty();
 
         //Loops through search results and adds the list of recipes that pops up
         response.recipes.forEach(function (result) {
-            $("#search-results").append("<li class='main-result' data-recipe-id='" + result.id + "'>" +
+            $("#browse-results").append("<li class='main-result' data-recipe-id='" + result.id + "'>" +
                 "<h3>" + result.title + "</h3>" +
                 "<p>Ready in " + result.readyInMinutes + " minutes</p>" +
                 "<p>" + result.servings + " servings</p>"
@@ -269,7 +274,9 @@ $("#browseButton").on("click", function () {
 
 
 $("#ingredientsClear").on("click", function () {
-    $("#myIngredients").empty();
+    $("#ingredientsList").empty();
+    $("#ingredient-results").empty();
+    myIngredients = [];
 })
 
 
@@ -283,7 +290,6 @@ function getInstructions(id) {
         url: instructionsUrl,
         method: "GET"
     }).then(function (steps) {
-        // console.log(steps);
         //loops the instructions array and adds it to the instructions html
         steps[0].steps.forEach(function (step) {
             $("#instructions").append("<p><strong>" + step.number + "</strong>: " + step.step + " </p>");
@@ -301,7 +307,6 @@ function getIngredients(id) {
         url: ingredientsUrl,
         method: "GET"
     }).then(function (ingredients) {
-        // console.log(ingredients);
         //loops the ingrediets array and adds it to the ingredients html
         ingredients.ingredients.forEach(function (ingredient) {
             $("#ingredients").append("<p><strong>" + ingredient.name + "</strong>: " + ingredient.amount.us.value + " " + ingredient.amount.us.unit + " </p>");
@@ -327,8 +332,6 @@ $("#search-results").on("click", ".main-result", function () {
         url,
         method: "GET"
     }).then(function (response) {
-
-        console.log(response);
         //Displays recipe details
         $("#recipe-details").html("<h3>" + response.title + "</h3>" +
             "<p>Likes: " + response.aggregateLikes + "</p>" +
@@ -352,21 +355,45 @@ $("#recipe-details").on("click", ".favorite", function () {
 
     var user = firebase.auth().currentUser;
 
+    var userEmail = user.email.replace(".", "");
+
     if (user) {
-        firebase.database().ref("users/" + user.uid + "/favorites/").push({
+        firebase.database().ref("users/" + userEmail + "/favorites/").push({
             recipeId
         })
     }
 })
 
-$("#myRecipes").on("click", function () {
+$("#myRecipes").on("click", function (e) {
+    e.preventDefault();
+    $(".layout-1").hide();
+    $(".layout-2").hide();
+    $(".layout-3").hide();
+    $(".layout-4").show();
+
+    $("#search-results").empty();
+
     var user = firebase.auth().currentUser;
 
+    var userEmail = user.email.replace(".", "");
+
     if (user) {
-        firebase.database().ref("users/" + user.uid + "/favorites/").on("child_added", function (data) {
-            console.log(data.val().recipeId);
+        firebase.database().ref("users/" + userEmail + "/favorites/").on("child_added", function (data) {
 
+            var url = "https://api.spoonacular.com/recipes/" + data.val().recipeId + "/information?apiKey=" + API_KEY;
 
+            $.ajax({
+                url,
+                method: "GET"
+            }).then(function (response) {
+
+                $("#favorite-results").append("<li class='main-result' data-recipe-id='" + response.id + "'>" +
+                    "<h3>" + response.title + "</h3>" +
+                    "<p>Ready in " + response.readyInMinutes + " minutes</p>" +
+                    "<p>" + response.servings + " servings</p>"
+                    + "<img style='max-width: 400px;' src='" + response.image + "'>" +
+                    "</li>");
+            });
 
         })
     }
@@ -388,8 +415,6 @@ $(".signupbtn").on("click", function (event) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
         // ...
     });
 
@@ -397,16 +422,15 @@ $(".signupbtn").on("click", function (event) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
         // ...
     });
 
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
+            var userEmail = user.email.replace(".", "");
 
-            firebase.database().ref('users/' + user.uid).set({
-                uid: user.uid
+            firebase.database().ref('users/' + userEmail).set({
+                email: userEmail
             })
 
             window.location.href = "index.html";
@@ -418,8 +442,6 @@ $("#login").on("click", function (event) {
     // Prevent the page from refreshing
     event.preventDefault();
 
-    console.log("yes");
-
     var email = $("#email").val();
     var password = $("#psw").val();
 
@@ -427,8 +449,6 @@ $("#login").on("click", function (event) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
         // ...
     });
 
@@ -448,11 +468,14 @@ firebase.auth().onAuthStateChanged(function (user) {
         var emailArr = user.email.split("@");
         var email = emailArr[0];
         $("#user-email").text(email);
-        console.log(user);
+        $("#myRecipes").show();
+        $("#myRecipesSignedout").hide();
     } else {
         // No user is signed in.
         $("#loginLink").show();
         $("#logoutLink").hide();
+        $("#myRecipes").hide();
+        $("#myRecipesSignedout").show();
         $("#userLoggedIn").hide();
         $("#userLoggedOut").show();
     }
@@ -474,11 +497,9 @@ $("#logoutLink").on("click", function (e) {
 
 function openNav() {
     $("#mysidenav").css({ "transform": "translateX(0)" });
-    console.log("working");
 };
 
 function closeNav() {
     $("#mysidenav").css({ "transform": "translateX(-100%)" });
-    console.log("close working");
 };
 

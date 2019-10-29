@@ -110,7 +110,7 @@ body {
 }
 
 
-.btn-secondary {
+.option-btn {
     padding:2vh;   
 }
 
@@ -119,7 +119,7 @@ body {
     margin-left: 25px;
     margin-top: 10px;
     font-size:40px;
-    cursor:pointer
+    cursor:pointer;
 }
 
 #nnLogo {

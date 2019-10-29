@@ -91,7 +91,6 @@ body {
 }
 
 .cardOne {
-    margin-left:10%;
     overflow: hidden;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
@@ -102,7 +101,6 @@ body {
 }
 
 .cardTwo {
-    margin-right:10%;  
     overflow: hidden; 
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
@@ -153,6 +151,11 @@ body {
     background-color: #111111 !important;
 }
 
+@media screen and (min-width: 1200px){
+    .main-container {
+        max-width: 85% !important;
+    }
+}
 
 .btn-secondary {
     padding:2vh;   
@@ -206,7 +209,6 @@ body {
 
 footer {
     background-color: #111111;
-    position: fixed;
     bottom: 0;
     width: 100%; 
     left: 0;
@@ -250,8 +252,18 @@ footer p {
     align-items: center;
 }
 
+.ingredient p {
+    margin-bottom: 0;
+    font-size: 15px;
+    font-family: "Lemon/Milk Bold";
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #111111;
+}
+
 .removeIngredient {
     cursor: pointer;
+    font-size: 20px;
 }
 
 #ingredientsClear {

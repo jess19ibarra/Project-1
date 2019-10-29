@@ -138,3 +138,21 @@ button {
       width: 100%;
     }
   }
+
+ form {
+   padding-bottom: 100px;
+ } 
+
+  footer {
+    background-color: #111111;
+    bottom: 0;
+    width: 100%; 
+    left: 0;
+    color: white; 
+    padding: 15px;
+
+}
+
+footer p {
+  text-align: center;
+}

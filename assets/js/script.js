@@ -99,7 +99,7 @@ $(".ingredient-add").on("click", function (e) {
 
     $("#ingredientsList").empty();
     myIngredients.forEach(function (ingredient) {
-        $("#ingredientsList").append("<li class='ingredient'><p>" + ingredient + "</p><i class='removeIngredient fas fa-times'></i></li>");
+        $("#ingredientsList").append("<li class='ingredient list-group-item'><p>" + ingredient + "</p><i class='removeIngredient fas fa-times'></i></li>");
     })
 
     $("#ingredients-search").val("");

@@ -237,17 +237,16 @@ $("#ingredient-results").on("click", ".googleBtn", initMap);
 
 //Browse Recipes Code
 
+
+
 $("#browseBtn").on("click", function () {
+
     $(".layout-1").hide();
     $(".layout-2").show();
     $(".layout-3").hide();
     $(".layout-4").hide();
 
 
-})
-
-
-$("#browseButton").on("click", function () {
     $("#browse-results").empty();
 
     var url = "https://api.spoonacular.com/recipes/random?number=10&apiKey=" + API_KEY;

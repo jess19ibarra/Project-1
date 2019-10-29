@@ -347,8 +347,6 @@ $("#search-results, #favorite-results, #browse-results, #ingredient-results").on
     getInstructions(id);
     //Gets Ingredients
     getIngredients(id);
-
-
 });
 
 $("#recipe-details").on("click", ".favorite", function () {

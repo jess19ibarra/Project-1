@@ -21,48 +21,8 @@ firebase.initializeApp(config);
 // Create a variable to reference the database
 var database = firebase.database();
 
-
-// $(".option-btn").on("click", function (e) {
-//     e.preventDefault()
-
-//     var btn = $(this).attr('id');
-//     var html = "";
-//     if (btn === "option1") {
-//         html = '<div class="container ingredientSearch">' +
-//             '<input type="text" class="form-control" id="ingredients-search">' +
-//             '<button type="button" class="btn btn-dark btn-add">Add</button>' +
-//             '</div>' +
-//             '<br>' +
-//             '<div class="row">' +
-//             '<div class="col-sm-6">' +
-//             '<div class="card cardOne">' +
-//             '<div class="card-body">' +
-//             '<ul class="card-text" id="ingredientsList"></ul>' +
-//             '</div>' +
-//             '</div>' +
-//             '</div>' +
-//             '<div class="col-sm-6">' +
-//             '<div class="card cardTwo">' +
-//             '<div class="card-body">' +
-//             '<ul class="card-text" id="search-results"></ul>' +
-//             '</div>' +
-//             '</div>' +
-//             '</div>' +
-//             '</div>'
-//         {
-//             context = ingredients
-//         }
-
-//     }
-
-//     $(".layout").html()
-// })
-
-
-
-
 //////////////////////////////////// Jarrells Code //////////////////////////////////
-var API_KEY = '09f6d2653d8c4ecd9fcbf576a46890d0';
+var API_KEY = '0b2f00d76717490db1eb9da7457b0030';
 
 //General Search Code 
 
@@ -96,11 +56,15 @@ $(".btn-add").on("click", function (e) {
 
         //Loops through search results and adds the list of recipes that pops up
         response.results.forEach(function (result) {
-            $("#search-results").append("<li class='main-result' data-recipe-id='" + result.id + "'>" +
+            $("#search-results").append("<li class='main-result list-group-item' data-recipe-id='" + result.id + "'>" +
+                "<div class='media'>" +
+                "<img class='mr-3'style='max-width: 150px;' src='https://spoonacular.com/recipeImages/" + result.image + "'>" +
+                "<div class='media-body'" +
                 "<h3>" + result.title + "</h3>" +
                 "<p>Ready in " + result.readyInMinutes + " minutes</p>" +
-                "<p>" + result.servings + " servings</p>"
-                + "<img style='max-width: 400px;' src='https://spoonacular.com/recipeImages/" + result.image + "'>" +
+                "<p>" + result.servings + " servings</p>" +
+                "</div>" +
+                "</div>" +
                 "</li>");
         });
     });
@@ -157,11 +121,12 @@ $("#ingredients-search").on("change", function (e) {
 
                 result.missedIngredients.forEach(function (missing) {
                     missingIngredients.push(missing.name);
+                    console.log(missing.name);
                 });
 
                 missingString = missingIngredients.join(",");
 
-                ///for the google places modal///　ジェイラ
+                ///for the google places modal///　
 
                 googleBtn = "<button type='button' class='btn btn-dark googleBtn 'data-toggle='modal' data-target='#googleModel'>View Nearby Stores</button>";
             } else {
@@ -169,13 +134,18 @@ $("#ingredients-search").on("change", function (e) {
                 googleBtn = "";
             }
 
-            $("#ingredient-results").append("<li class='main-result' data-recipe-id='" + result.id + "'>" +
+            $("#ingredient-results").append("<li class='main-result list-group-item' data-recipe-id='" + result.id + "'>" +
+                "<div class='media'>" +
+                "<img class='mr-3'style='max-width: 150px;' src='" + result.image + "'>" +
+                "<div class='media-body'" +
                 "<h3>" + result.title + "</h3>" +
                 "<p>Likes: " + result.likes + "</p>" +
                 "<p>Missing Ingredients: " + missingString + "</p>" +
                 googleBtn +
-                "<img style='max-width: 400px;' src='" + result.image + "'>" +
+                "</div>" +
+                "</div>" +
                 "</li>");
+            console.log(result);
         });
     })
 });
@@ -189,7 +159,7 @@ $("#ingredientsList").on("click", ".removeIngredient", function () {
     $(this).parent().remove();
 });
 
-///google places api is the worst/// グーグルプレイズは最悪だ。
+///google places api ///
 
 var map;
 var service;
@@ -259,11 +229,15 @@ $("#browseBtn").on("click", function () {
 
         //Loops through search results and adds the list of recipes that pops up
         response.recipes.forEach(function (result) {
-            $("#browse-results").append("<li class='main-result' data-recipe-id='" + result.id + "'>" +
+            $("#browse-results").append("<li class='main-result list-group-item' data-recipe-id='" + result.id + "'>" +
+                "<div class='media'>" +
+                "<img class='mr-3'style='max-width: 150px;' src='" + result.image + "'>" +
+                "<div class='media-body'" +
                 "<h3>" + result.title + "</h3>" +
                 "<p>Ready in " + result.readyInMinutes + " minutes</p>" +
-                "<p>" + result.servings + " servings</p>"
-                + "<img style='max-width: 400px;' src='" + result.image + "'>" +
+                "<p>" + result.servings + " servings</p>" +
+                "</div>" +
+                "</div>" +
                 "</li>");
         });
 
@@ -343,10 +317,10 @@ $("#search-results, #favorite-results, #browse-results, #ingredient-results").on
             "<p>Servings: " + response.servings + "</p>");
     });
 
-    //Gets Instructions
-    getInstructions(id);
     //Gets Ingredients
     getIngredients(id);
+    //Gets Instructions
+    getInstructions(id);
 
 
 });
@@ -386,13 +360,17 @@ $("#myRecipes").on("click", function (e) {
             $.ajax({
                 url,
                 method: "GET"
-            }).then(function (response) {
+            }).then(function (result) {
 
-                $("#favorite-results").append("<li class='main-result' data-recipe-id='" + response.id + "'>" +
-                    "<h3>" + response.title + "</h3>" +
-                    "<p>Ready in " + response.readyInMinutes + " minutes</p>" +
-                    "<p>" + response.servings + " servings</p>"
-                    + "<img style='max-width: 400px;' src='" + response.image + "'>" +
+                $("#favorite-results").append("<li class='main-result list-group-item' data-recipe-id='" + result.id + "'>" +
+                    "<div class='media'>" +
+                    "<img class='mr-3'style='max-width: 150px;' src='" + result.image + "'>" +
+                    "<div class='media-body'" +
+                    "<h3>" + result.title + "</h3>" +
+                    "<p>Ready in " + result.readyInMinutes + " minutes</p>" +
+                    "<p>" + result.servings + " servings</p>" +
+                    "</div>" +
+                    "</div>" +
                     "</li>");
             });
 

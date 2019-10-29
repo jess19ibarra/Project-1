@@ -44,8 +44,6 @@ body {
 
 .card-body {
     background-color: #ffffff;
-    min-height: 50vh;
-    margin-top: 100px;
 }
 
 .fade-out {
@@ -58,7 +56,7 @@ body {
     top: 0;
     background-color: #fed060;
     text-align: center;
-    animation: fadeOut 3s;
+    animation: fadeOut 2s;
     animation-fill-mode: forwards;
     animation-delay: 2s;
     align-items: center;
@@ -190,6 +188,20 @@ footer p {
 
 }
 
+.ingredient {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.removeIngredient {
+    cursor: pointer;
+}
+
+.ingredientsClear {
+    cursor: pointer;
+}
+
 .sidenav{
     height: 100%;
     width: 250px;
@@ -250,7 +262,7 @@ footer p {
     font-size: 18px;
   }
 
-.layout-1, .layout-2, .layout-3 {
+.layout-4, .layout-2, .layout-3 {
 
     display: none; 
   }

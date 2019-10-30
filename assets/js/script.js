@@ -376,7 +376,7 @@ $("#search-results, #favorite-results, #browse-results, #ingredient-results").on
         //Displays recipe details
         $("#recipe-details").html("<h3>" + response.title + "</h3>" +
             "<p>Likes: " + response.aggregateLikes + "</p>" +
-            "<p class='favorite' data-id='" + response.id + "'>Favorite Me</p>" +
+            "<p class='favorite' data-id='" + response.id + "'><i class='fas fa-heart' style='font-size: 25px;'></i></p>" +
             "<p>Health Score: " + response.healthScore + "</p>" +
             "<p>Ready in " + response.readyInMinutes + " minutes</p>" +
             "<p>Price per serving: $" + response.pricePerServing + "</p>" +

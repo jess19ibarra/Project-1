@@ -309,13 +309,15 @@ $("#browseBtn").on("click", function () {
 })
 
 
-
 $("#ingredientsClear").on("click", function () {
     $("#ingredientsList").empty();
     $("#ingredient-results").empty();
     myIngredients = [];
 })
 
+$("#favorites-clear").on("click", function () {
+    $("#favorite-results").empty();
+})
 
 function getInstructions(id) {
     $("#instructions").empty();
